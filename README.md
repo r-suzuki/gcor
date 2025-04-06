@@ -5,8 +5,8 @@
 
 <!-- badges: end -->
 
-**mdep** provides measures based on mutual dependency, and other related
-methods for data analysis.
+**mdep** is an R package which provides measures based on mutual
+dependency, and other related methods for data analysis.
 
 It features a generalized version of (absolute) correlation coefficient
 for arbitrary types of data, including categorical variables.
