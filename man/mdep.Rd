@@ -3,7 +3,7 @@
 \name{mdep}
 \alias{mdep}
 \alias{gcor}
-\alias{gdist}
+\alias{gdis}
 \alias{pscore}
 \title{Estimate mutual dependencies and related measures}
 \usage{
@@ -11,7 +11,7 @@ mdep(x, y = NULL, k = NULL, type, data = NULL, drop = FALSE)
 
 gcor(x, y = NULL, k = NULL, data = NULL, drop = TRUE)
 
-gdist(x, y = NULL, k = NULL, data = NULL)
+gdis(x, y = NULL, k = NULL, data = NULL)
 
 pscore(x, y = NULL, k = NULL, data = NULL, drop = TRUE)
 }
@@ -26,7 +26,7 @@ If \code{NULL}, it is determined automatically.}
 
 \item{type}{a character specifying the type of measure, one of \code{"cor"}, \code{"dist"}, \code{"pred"}.
 \code{gcor} is a wrapper for \code{mdep} with \code{type = "cor"}.
-Similarly, \code{gdist} wraps \code{type = "dist"}, and \code{pscore} wraps \code{type = "pred"}.}
+Similarly, \code{gdis} wraps \code{type = "dist"}, and \code{pscore} wraps \code{type = "pred"}.}
 
 \item{data}{\code{NULL} (default) or a data frame. Required if \code{x} is a formula.}
 
@@ -35,7 +35,7 @@ a vector when one of its dimensions is one.}
 }
 \value{
 For \code{gcor} and \code{pscore}, a numeric matrix is returned (or a vector if \code{drop = TRUE}).
-For \code{gdist}, an object of class \code{"dist"} is returned.
+For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{
 Estimate generalized correlation measure, generalized distance between variables,
@@ -46,7 +46,7 @@ and predictability score based on mutual dependencies.
 gcor(iris)
 
 # Clustering
-gd <- gdist(iris)
+gd <- gdis(iris)
 hc <- hclust(gd, method = "ward.D2")
 plot(hc)
 

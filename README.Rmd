@@ -7,7 +7,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  dev = "svglite"
 )
 
 pkgload::load_all(".")
@@ -54,9 +55,9 @@ With $|r|$ as the generalized correlation between $x$ an $y$, we can define
 a dissimilarity measure $d(x,y) = \sqrt{1 - |r|^2}$.
 It can be applied to cluster analysis:
 
-```{r example_iris_gdist}
+```{r example_iris_gdis}
 # Clustering
-gd <- gdist(iris)
+gd <- gdis(iris)
 hc <- hclust(gd, method = "ward.D2")
 plot(hc)
 ```

@@ -54,12 +54,12 @@ applied to cluster analysis:
 
 ``` r
 # Clustering
-gd <- gdist(iris)
+gd <- gdis(iris)
 hc <- hclust(gd, method = "ward.D2")
 plot(hc)
 ```
 
-<img src="man/figures/README-example_iris_gdist-1.png" width="100%" />
+<img src="man/figures/README-example_iris_gdis-1.svg" width="100%" />
 
 The **predictability score** is another variation of the generalized
 correlation. It also takes values in $[0,1]$, reaching $1$ when $y$ is
@@ -73,4 +73,4 @@ ps <- pscore(Species ~ ., data = iris)
 dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 ```
 
-<img src="man/figures/README-example_iris_pscore-1.png" width="100%" />
+<img src="man/figures/README-example_iris_pscore-1.svg" width="100%" />
