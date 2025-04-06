@@ -55,12 +55,21 @@ With $|r|$ as the generalized correlation between $x$ an $y$, we can define
 a dissimilarity measure $d(x,y) = \sqrt{1 - |r|^2}$.
 It can be applied to cluster analysis:
 
-```{r example_iris_gdis}
+```{r example_iris_hclust}
 # Clustering
 gd <- gdis(iris)
 hc <- hclust(gd, method = "ward.D2")
 plot(hc)
 ```
+
+```{r example_iris_cmdscale}
+# Multidimensional scaling
+mds <- cmdscale(gd, k = 2)
+plot(mds, type = "n", xlab = "", ylab = "", asp = 1, axes = FALSE,
+     main = "cmdscale with gdis(iris)")
+text(mds[,1], mds[,2], rownames(mds))
+```
+
 
 The **predictability score** is another variation of the generalized correlation.
 It also takes values in $[0,1]$, reaching $1$ when $y$ is perfectly predictable
