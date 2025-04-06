@@ -59,7 +59,17 @@ hc <- hclust(gd, method = "ward.D2")
 plot(hc)
 ```
 
-<img src="man/figures/README-example_iris_gdis-1.svg" width="100%" />
+<img src="man/figures/README-example_iris_hclust-1.svg" width="100%" />
+
+``` r
+# Multidimensional scaling
+mds <- cmdscale(gd, k = 2)
+plot(mds, type = "n", xlab = "", ylab = "", asp = 1, axes = FALSE,
+     main = "cmdscale with gdis(iris)")
+text(mds[,1], mds[,2], rownames(mds))
+```
+
+<img src="man/figures/README-example_iris_cmdscale-1.svg" width="100%" />
 
 The **predictability score** is another variation of the generalized
 correlation. It also takes values in $[0,1]$, reaching $1$ when $y$ is
