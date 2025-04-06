@@ -49,8 +49,13 @@ gcor(iris)
 ```
 
 With $|r|$ as the generalized correlation between $x$ an $y$, we can
-define a dissimilarity measure $d(x,y) = \sqrt{1 - |r|^2}$. It can be
-applied to cluster analysis:
+define a dissimilarity measure:
+
+$$
+d(x,y) = \sqrt{1 - |r|^2}
+$$
+
+It can be applied to cluster analysis:
 
 ``` r
 # Clustering
@@ -60,6 +65,9 @@ plot(hc)
 ```
 
 <img src="man/figures/README-example_iris_hclust-1.svg" width="100%" />
+
+Multidimensional scaling would serve as a good example of an
+application:
 
 ``` r
 # Multidimensional scaling
