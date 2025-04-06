@@ -1,0 +1,12 @@
+Package: mdep
+Title: Generalized Correlation and Other Methods Based on Mutual Dependency
+Version: 0.0.0.9000
+Authors@R: 
+    person("Ryota", "Suzuki", , "suzuki@ef-prime.com", role = c("aut", "cre"))
+Description: Measures based on mutual dependency and other related methods
+    for data analysis. Note tha it is in an early stage of development,
+    so changes may occur frequently.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.0.0
