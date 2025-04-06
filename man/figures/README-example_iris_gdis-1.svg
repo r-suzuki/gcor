@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='504.00pt' height='360.00pt' viewBox='0 0 504.00 360.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA='>
+    <rect x='0.00' y='0.00' width='504.00' height='360.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
+<text transform='translate(76.98,90.61) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='64.70px' lengthAdjust='spacingAndGlyphs'>Sepal.Width</text>
+<text transform='translate(172.98,133.61) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='70.73px' lengthAdjust='spacingAndGlyphs'>Sepal.Length</text>
+<text transform='translate(268.98,207.27) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='67.39px' lengthAdjust='spacingAndGlyphs'>Petal.Length</text>
+<text transform='translate(364.98,222.06) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='61.36px' lengthAdjust='spacingAndGlyphs'>Petal.Width</text>
+<text transform='translate(460.98,222.06) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='42.69px' lengthAdjust='spacingAndGlyphs'>Species</text>
+<polyline points='362.40,212.07 362.40,198.92 458.40,198.92 458.40,212.07 ' style='stroke-width: 0.75;' />
+<polyline points='266.40,197.27 266.40,184.13 410.40,184.13 410.40,198.92 ' style='stroke-width: 0.75;' />
+<polyline points='170.40,123.61 170.40,110.47 338.40,110.47 338.40,184.13 ' style='stroke-width: 0.75;' />
+<polyline points='74.40,80.61 74.40,67.47 254.40,67.47 254.40,110.47 ' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='199.12' x2='59.04' y2='63.16' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='199.12' x2='51.84' y2='199.12' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='179.70' x2='51.84' y2='179.70' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='160.28' x2='51.84' y2='160.28' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='140.85' x2='51.84' y2='140.85' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='121.43' x2='51.84' y2='121.43' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='102.01' x2='51.84' y2='102.01' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='82.58' x2='51.84' y2='82.58' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='63.16' x2='51.84' y2='63.16' style='stroke-width: 0.75;' />
+<text transform='translate(41.76,199.12) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.2</text>
+<text transform='translate(41.76,160.28) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.4</text>
+<text transform='translate(41.76,121.43) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.6</text>
+<text transform='translate(41.76,82.58) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.8</text>
+<text x='266.40' y='34.70' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: "Arial";' textLength='139.16px' lengthAdjust='spacingAndGlyphs'>Cluster Dendrogram</text>
+<text x='266.40' y='355.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='107.22px' lengthAdjust='spacingAndGlyphs'>hclust (*, "ward.D2")</text>
+<text x='266.40' y='341.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>gd</text>
+<text transform='translate(12.96,172.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='34.69px' lengthAdjust='spacingAndGlyphs'>Height</text>
+</g>
+</svg>

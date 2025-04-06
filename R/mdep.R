@@ -10,13 +10,13 @@
 #' If `NULL`, it is determined automatically.
 #' @param type a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
 #' `gcor` is a wrapper for `mdep` with `type = "cor"`.
-#' Similarly, `gdist` wraps `type = "dist"`, and `pscore` wraps `type = "pred"`.
+#' Similarly, `gdis` wraps `type = "dist"`, and `pscore` wraps `type = "pred"`.
 #' @param data `NULL` (default) or a data frame. Required if `x` is a formula.
 #' @param drop a logical. If `TRUE`, the returned value is coerced to
 #' a vector when one of its dimensions is one.
 #'
 #' @return For `gcor` and `pscore`, a numeric matrix is returned (or a vector if `drop = TRUE`).
-#' For `gdist`, an object of class `"dist"` is returned.
+#' For `gdis`, an object of class `"dist"` is returned.
 #'
 #' @references
 #' Suzuki, R. (2025). *A generalization of correlation coefficient*. preprint.
@@ -27,7 +27,7 @@
 #' gcor(iris)
 #'
 #' # Clustering
-#' gd <- gdist(iris)
+#' gd <- gdis(iris)
 #' hc <- hclust(gd, method = "ward.D2")
 #' plot(hc)
 #'
@@ -145,7 +145,7 @@ gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
 
 #' @rdname mdep
 #' @export
-gdist <- function(x, y = NULL, k = NULL, data = NULL) {
+gdis <- function(x, y = NULL, k = NULL, data = NULL) {
   mdep(x = x, y = y, type = "dist", k = k, data = data)
 }
 
