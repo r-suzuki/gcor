@@ -48,7 +48,7 @@ gcor(iris)
 #> Species         0.8226041   0.6794982    0.9728947   0.9795837 1.0000000
 ```
 
-With $|r|$ as the generalized correlation between $x$ an $y$, we can
+With $|r|$ as the generalized correlation between $x$ and $y$, we can
 define a dissimilarity measure:
 
 $$
