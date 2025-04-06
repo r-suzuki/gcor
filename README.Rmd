@@ -51,7 +51,7 @@ coincides with the absolute value of the correlation coefficient.
 gcor(iris)
 ```
 
-With $|r|$ as the generalized correlation between $x$ an $y$, we can define
+With $|r|$ as the generalized correlation between $x$ and $y$, we can define
 a dissimilarity measure:
 
 $$
