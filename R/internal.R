@@ -2,14 +2,14 @@
   if(length(unique(x)) <= k) {
     ret <- as.factor(x)
   } else {
-    qt <- quantile(x, probs = seq(0, 1, length.out = k + 1))
+    qt <- quantile(x, probs = seq(0, 1, length.out = k + 1), na.rm = TRUE)
     ret <- cut(x, breaks = unique(qt), include.lowest = TRUE)
   }
   return(ret)
 }
 
 # returns a list containing the estimated values, and other quantities for further computations.
-.mdep_quantile_grid <- function(x, y, k) {
+.mdep_quantile_grid <- function(x, y, k, includeNA = TRUE) {
   stopifnot(length(x) == length(y))
   stopifnot(length(x) > 0)
 
@@ -20,7 +20,7 @@
     xx <- if(is.numeric(x)) .div(x, k[i]) else x
     yy <- if(is.numeric(y)) .div(y, k[i]) else y
 
-    nn <- xtabs(~ xx + yy)
+    nn <- xtabs(~ xx + yy, addNA = includeNA)
 
     nx  <- apply(nn, 1, sum)
     ny  <- apply(nn, 2, sum)
