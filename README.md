@@ -16,12 +16,19 @@ may occur frequently.**
 
 ## Installation
 
-You can install the development version of mdep from
-[GitHub](https://github.com/) with:
+You can install the development version of `mdep` from
+[GitHub](https://github.com/) with `pak`:
 
 ``` r
 # install.packages("pak")
 pak::pak("r-suzuki/mdep")
+```
+
+or with `devtools`:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("r-suzuki/mdep")
 ```
 
 ## Example
