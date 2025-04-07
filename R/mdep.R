@@ -1,3 +1,21 @@
+#' @rdname mdep
+#' @export
+gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
+  mdep(x = x, y = y, measure = "cor", k = k, data = data, drop = drop)
+}
+
+#' @rdname mdep
+#' @export
+gdis <- function(x, y = NULL, k = NULL, data = NULL) {
+  mdep(x = x, y = y, measure = "dist", k = k, data = data)
+}
+
+#' @rdname mdep
+#' @export
+pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
+  mdep(x = x, y = y, measure = "pred", k = k, data = data, drop = drop)
+}
+
 #' Estimate mutual dependencies and related measures
 #'
 #' @description Estimate generalized correlation measure, generalized distance between variables,
@@ -8,9 +26,9 @@
 #' @param k `NULL` (default) or an integer specifying the number of groups for discretization.
 #' Numerical data are divided into `k` groups using `k`-quantiles.
 #' If `NULL`, it is determined automatically.
-#' @param type a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
-#' `gcor` is a wrapper for `mdep` with `type = "cor"`.
-#' Similarly, `gdis` wraps `type = "dist"`, and `pscore` wraps `type = "pred"`.
+#' @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
+#' `gcor` is a wrapper for `mdep` with `measure = "cor"`.
+#' Similarly, `gdis` wraps `measure = "dist"`, and `pscore` wraps `measure = "pred"`.
 #' @param data `NULL` (default) or a data frame. Required if `x` is a formula.
 #' @param drop a logical. If `TRUE`, the returned value is coerced to
 #' a vector when one of its dimensions is one.
@@ -42,13 +60,13 @@
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @rdname mdep
 #' @export
-mdep <- function(x, y = NULL, k = NULL, type, data = NULL, drop = FALSE) {
+mdep <- function(x, y = NULL, k = NULL, measure, data = NULL, drop = FALSE) {
   IS_XY_SYNMETRIC <- FALSE
-  TYPES <- c("cor", "dist", "pred")
+  MEASURES <- c("cor", "dist", "pred")
   xx <- yy <- kk <- ret <- NULL
 
-  if(is.na(match(type, TYPES))) {
-    stop(.gen_msg("type", type, TYPES))
+  if(is.na(match(measure, MEASURES))) {
+    stop(.gen_msg("measure", measure, MEASURES))
   }
 
   if(is.null(y) & is.atomic(x) && is.null(dim(x))) {
@@ -108,19 +126,19 @@ mdep <- function(x, y = NULL, k = NULL, type, data = NULL, drop = FALSE) {
       if(IS_XY_SYNMETRIC && i > j) {
         # DO NOTHING
       } else if(IS_XY_SYNMETRIC && i == j) {
-        ret[i, j] <- if(type == "dist") 0.0 else 1.0
+        ret[i, j] <- if(measure == "dist") 0.0 else 1.0
       } else {
         m_ij <- .mdep_quantile_grid(xx[,i], yy[,j], k)
 
         kk <- sqrt(m_ij$kx) * sqrt(m_ij$ky)
         r2 <- 1 - 1/m_ij$estimate
-        if(type == "cor") {
+        if(measure == "cor") {
           ret[i, j] <- sqrt(r2 / (1 - 1/kk))
           if(IS_XY_SYNMETRIC) ret[j, i]  <- ret[i, j]
-        } else if(type == "dist") {
+        } else if(measure == "dist") {
           ret[i, j] <- sqrt(1 - r2 / (1 - 1/kk))
           if(IS_XY_SYNMETRIC) ret[j, i] <- ret[i, j]
-        } else if(type == "pred") {
+        } else if(measure == "pred") {
           ret[i, j] <- sqrt(r2 / (1 - 1/m_ij$ky))
           if(IS_XY_SYNMETRIC) ret[j, i] <- sqrt(r2 / (1 - 1/m_ij$kx))
         }
@@ -128,7 +146,7 @@ mdep <- function(x, y = NULL, k = NULL, type, data = NULL, drop = FALSE) {
     }
   }
 
-  if(type == "dist") {
+  if(measure == "dist") {
     ret <- as.dist(ret)
   } else if(drop) {
     if(nrow(ret) == 1 && ncol(ret) == 1) {
@@ -141,22 +159,4 @@ mdep <- function(x, y = NULL, k = NULL, type, data = NULL, drop = FALSE) {
   }
 
   return(ret)
-}
-
-#' @rdname mdep
-#' @export
-gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, type = "cor", k = k, data = data, drop = drop)
-}
-
-#' @rdname mdep
-#' @export
-gdis <- function(x, y = NULL, k = NULL, data = NULL) {
-  mdep(x = x, y = y, type = "dist", k = k, data = data)
-}
-
-#' @rdname mdep
-#' @export
-pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, type = "pred", k = k, data = data, drop = drop)
 }
