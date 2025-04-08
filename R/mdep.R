@@ -1,24 +1,3 @@
-#' @rdname mdep
-#' @export
-gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "cor",
-       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
-}
-
-#' @rdname mdep
-#' @export
-gdis <- function(x, y = NULL, k = NULL, data = NULL) {
-  mdep(x = x, y = y, k = k, data = data, measure = "dist",
-       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
-}
-
-#' @rdname mdep
-#' @export
-pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "pred",
-       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
-}
-
 #' Estimate mutual dependencies and related measures
 #'
 #' @description Estimate generalized correlation measure, generalized distance between variables,
@@ -32,11 +11,6 @@ pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
 #' @param data `NULL` (default) or a data frame. Required if `x` is a formula.
 #' @param drop a logical. If `TRUE`, the returned value is coerced to
 #' a vector when one of its dimensions is one.
-#' @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
-#' `gcor` is a wrapper for `mdep` with `measure = "cor"`.
-#' Similarly, `gdis` wraps `measure = "dist"`, and `pscore` wraps `measure = "pred"`.
-#' @param xname a character to be used as the name of `x`, when x is an atomic vector.
-#' @param yname a character used as the name of `y` (same as `xname` for `x`).
 #'
 #' @return For `gcor` and `pscore`, a numeric matrix is returned (or a vector if `drop = TRUE`).
 #' For `gdis`, an object of class `"dist"` is returned.
@@ -63,8 +37,15 @@ pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
 #' # Predictability of Species from other variables
 #' ps <- pscore(Species ~ ., data = iris)
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
-#' @rdname mdep
-#' @export
+#' @name mdep-package
+#' @docType _PACKAGE
+NULL
+
+# @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
+# `gcor` is a wrapper for `mdep` with `measure = "cor"`.
+# Similarly, `gdis` wraps `measure = "dist"`, and `pscore` wraps `measure = "pred"`.
+# @param xname a character to be used as the name of `x`, when x is an atomic vector.
+# @param yname a character used as the name of `y` (same as `xname` for `x`).
 mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
                  xname = deparse1(substitute(x)), yname = deparse1(substitute(y))
                  ) {
@@ -164,4 +145,25 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
   }
 
   return(ret)
+}
+
+#' @rdname mdep-package
+#' @export
+gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
+  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "cor",
+       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
+}
+
+#' @rdname mdep-package
+#' @export
+gdis <- function(x, y = NULL, k = NULL, data = NULL) {
+  mdep(x = x, y = y, k = k, data = data, measure = "dist",
+       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
+}
+
+#' @rdname mdep-package
+#' @export
+pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
+  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "pred",
+       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }

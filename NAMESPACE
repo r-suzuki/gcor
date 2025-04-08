@@ -2,5 +2,4 @@
 
 export(gcor)
 export(gdis)
-export(mdep)
 export(pscore)
