@@ -27,10 +27,6 @@
 #' # Generalized correlation measure
 #' gcor(iris)
 #'
-#' # Predictability of Species from other variables
-#' ps <- pscore(Species ~ ., data = iris)
-#' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
-#'
 #' # Clustering
 #' gd <- gdis(iris)
 #' hc <- hclust(gd, method = "ward.D2")
@@ -41,6 +37,10 @@
 #' plot(mds, type = "n", xlab = "", ylab = "", asp = 1, axes = FALSE,
 #'      main = "cmdscale with gdis(iris)")
 #' text(mds[,1], mds[,2], rownames(mds))
+#'
+#' # Predictability of Species from other variables
+#' ps <- pscore(Species ~ ., data = iris)
+#' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @name mdep-package
 #' @docType _PACKAGE
 #' @aliases mdep
@@ -162,13 +162,6 @@ gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
 
 #' @rdname mdep-package
 #' @export
-pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "pred",
-       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
-}
-
-#' @rdname mdep-package
-#' @export
 gdis <- function(x, k = NULL, ...) {
   if(!is.matrix(x) && !is.data.frame(x)) {
     stop("x should be a matrix or data frame.")
@@ -176,4 +169,11 @@ gdis <- function(x, k = NULL, ...) {
 
   mdep(x = x, y = NULL, k = k, data = data, measure = "dist",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)), ...)
+}
+
+#' @rdname mdep-package
+#' @export
+pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
+  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "pred",
+       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }

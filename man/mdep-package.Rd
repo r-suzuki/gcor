@@ -5,15 +5,15 @@
 \alias{mdep-package}
 \alias{mdep}
 \alias{gcor}
-\alias{pscore}
 \alias{gdis}
+\alias{pscore}
 \title{Estimate mutual dependency and related measures}
 \usage{
 gcor(x, y = NULL, k = NULL, data = NULL, drop = TRUE)
 
-pscore(x, y = NULL, k = NULL, data = NULL, drop = TRUE)
-
 gdis(x, k = NULL, ...)
+
+pscore(x, y = NULL, k = NULL, data = NULL, drop = TRUE)
 }
 \arguments{
 \item{x}{a vector, matrix, data frame or formula. If formula, \code{data} should be specified.
@@ -39,8 +39,8 @@ For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{
 Estimate generalized correlation measure (\code{gcor}),
-generalized dissimilarity measure between variables (\code{gdis}),
-and predictability score (\code{pscore}) based on mutual dependency.
+generalized dissimilarity between variables (\code{gdis}), and
+predictability score (\code{pscore}) based on mutual dependency.
 }
 \examples{
 # Generalized correlation measure
