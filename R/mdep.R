@@ -27,6 +27,10 @@
 #' # Generalized correlation measure
 #' gcor(iris)
 #'
+#' # Predictability of Species from other variables
+#' ps <- pscore(Species ~ ., data = iris)
+#' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
+#'
 #' # Clustering
 #' gd <- gdis(iris)
 #' hc <- hclust(gd, method = "ward.D2")
@@ -37,10 +41,6 @@
 #' plot(mds, type = "n", xlab = "", ylab = "", asp = 1, axes = FALSE,
 #'      main = "cmdscale with gdis(iris)")
 #' text(mds[,1], mds[,2], rownames(mds))
-#'
-#' # Predictability of Species from other variables
-#' ps <- pscore(Species ~ ., data = iris)
-#' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @name mdep-package
 #' @docType _PACKAGE
 #' @aliases mdep
