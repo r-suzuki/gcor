@@ -1,19 +1,22 @@
 #' @rdname mdep
 #' @export
 gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, measure = "cor", k = k, data = data, drop = drop)
+  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "cor",
+       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
 #' @rdname mdep
 #' @export
 gdis <- function(x, y = NULL, k = NULL, data = NULL) {
-  mdep(x = x, y = y, measure = "dist", k = k, data = data)
+  mdep(x = x, y = y, k = k, data = data, measure = "dist",
+       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
 #' @rdname mdep
 #' @export
 pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, measure = "pred", k = k, data = data, drop = drop)
+  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "pred",
+       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
 #' Estimate mutual dependencies and related measures
@@ -26,12 +29,14 @@ pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
 #' @param k `NULL` (default) or an integer specifying the number of groups for discretization.
 #' Numerical data are divided into `k` groups using `k`-quantiles.
 #' If `NULL`, it is determined automatically.
-#' @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
-#' `gcor` is a wrapper for `mdep` with `measure = "cor"`.
-#' Similarly, `gdis` wraps `measure = "dist"`, and `pscore` wraps `measure = "pred"`.
 #' @param data `NULL` (default) or a data frame. Required if `x` is a formula.
 #' @param drop a logical. If `TRUE`, the returned value is coerced to
 #' a vector when one of its dimensions is one.
+#' @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
+#' `gcor` is a wrapper for `mdep` with `measure = "cor"`.
+#' Similarly, `gdis` wraps `measure = "dist"`, and `pscore` wraps `measure = "pred"`.
+#' @param xname a character to be used as the name of `x`, when x is an atomic vector.
+#' @param yname a character used as the name of `y` (same as `xname` for `x`).
 #'
 #' @return For `gcor` and `pscore`, a numeric matrix is returned (or a vector if `drop = TRUE`).
 #' For `gdis`, an object of class `"dist"` is returned.
@@ -60,7 +65,9 @@ pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @rdname mdep
 #' @export
-mdep <- function(x, y = NULL, k = NULL, measure, data = NULL, drop = FALSE) {
+mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE,
+                 measure, xname = deparse1(substitute(x)), yname = deparse1(substitute(y))
+                 ) {
   IS_XY_SYNMETRIC <- FALSE
   MEASURES <- c("cor", "dist", "pred")
   xx <- yy <- kk <- ret <- NULL
@@ -93,7 +100,6 @@ mdep <- function(x, y = NULL, k = NULL, measure, data = NULL, drop = FALSE) {
 
   if(is.null(xx)) {
     if(is.atomic(x) && is.null(dim(x))) {
-      xname <- deparse(substitute(x))
       xx <- .vec2df(x, xname)
     } else {
       xx <- as.data.frame(x)
@@ -105,7 +111,6 @@ mdep <- function(x, y = NULL, k = NULL, measure, data = NULL, drop = FALSE) {
       yy <- xx
       IS_XY_SYNMETRIC <- TRUE
     } else if(is.atomic(y) && is.null(dim(y))) {
-      yname <- deparse(substitute(y))
       yy <- .vec2df(y, yname)
     } else {
       yy <- as.data.frame(y)

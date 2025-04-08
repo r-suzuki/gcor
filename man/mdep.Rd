@@ -13,7 +13,16 @@ gdis(x, y = NULL, k = NULL, data = NULL)
 
 pscore(x, y = NULL, k = NULL, data = NULL, drop = TRUE)
 
-mdep(x, y = NULL, k = NULL, measure, data = NULL, drop = FALSE)
+mdep(
+  x,
+  y = NULL,
+  k = NULL,
+  data = NULL,
+  drop = FALSE,
+  measure,
+  xname = deparse1(substitute(x)),
+  yname = deparse1(substitute(y))
+)
 }
 \arguments{
 \item{x}{a vector, matrix, data frame or formula. If formula, \code{data} should be specified.}
@@ -32,6 +41,10 @@ a vector when one of its dimensions is one.}
 \item{measure}{a character specifying the type of measure, one of \code{"cor"}, \code{"dist"}, \code{"pred"}.
 \code{gcor} is a wrapper for \code{mdep} with \code{measure = "cor"}.
 Similarly, \code{gdis} wraps \code{measure = "dist"}, and \code{pscore} wraps \code{measure = "pred"}.}
+
+\item{xname}{a character to be used as the name of \code{x}, when x is an atomic vector.}
+
+\item{yname}{a character used as the name of \code{y} (same as \code{xname} for \code{x}).}
 }
 \value{
 For \code{gcor} and \code{pscore}, a numeric matrix is returned (or a vector if \code{drop = TRUE}).

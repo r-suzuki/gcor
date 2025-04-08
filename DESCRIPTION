@@ -1,6 +1,7 @@
 Package: mdep
 Title: Generalized Correlation and Other Methods Based on Mutual Dependency
 Version: 0.0.0.9000
+Depends: R (>= 4.0.0)
 Authors@R: 
     person("Ryota", "Suzuki", , "suzuki@ef-prime.com", role = c("aut", "cre"))
 Description: Measures based on mutual dependency and other related methods
