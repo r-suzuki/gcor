@@ -65,8 +65,8 @@ pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @rdname mdep
 #' @export
-mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE,
-                 measure, xname = deparse1(substitute(x)), yname = deparse1(substitute(y))
+mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
+                 xname = deparse1(substitute(x)), yname = deparse1(substitute(y))
                  ) {
   IS_XY_SYNMETRIC <- FALSE
   MEASURES <- c("cor", "dist", "pred")
