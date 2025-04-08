@@ -3,19 +3,21 @@
 \docType{_PACKAGE}
 \name{mdep-package}
 \alias{mdep-package}
+\alias{mdep}
 \alias{gcor}
-\alias{gdis}
 \alias{pscore}
-\title{Estimate mutual dependencies and related measures}
+\alias{gdis}
+\title{Estimate mutual dependency and related measures}
 \usage{
 gcor(x, y = NULL, k = NULL, data = NULL, drop = TRUE)
 
-gdis(x, y = NULL, k = NULL, data = NULL)
-
 pscore(x, y = NULL, k = NULL, data = NULL, drop = TRUE)
+
+gdis(x, k = NULL, ...)
 }
 \arguments{
-\item{x}{a vector, matrix, data frame or formula. If formula, \code{data} should be specified.}
+\item{x}{a vector, matrix, data frame or formula. If formula, \code{data} should be specified.
+\code{gdis} requires a matrix or data frame.}
 
 \item{y}{\code{NULL} (default) or a vector, matrix or data frame with compatible dimensions to \code{x}.}
 
@@ -27,14 +29,18 @@ If \code{NULL}, it is determined automatically.}
 
 \item{drop}{a logical. If \code{TRUE}, the returned value is coerced to
 a vector when one of its dimensions is one.}
+
+\item{...}{additional arguments (\code{diag} and \code{upper}) passed to \code{as.dist} function.
+See \link{as.dist} for details.}
 }
 \value{
 For \code{gcor} and \code{pscore}, a numeric matrix is returned (or a vector if \code{drop = TRUE}).
 For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{
-Estimate generalized correlation measure, generalized distance between variables,
-and predictability score based on mutual dependencies.
+Estimate generalized correlation measure (\code{gcor}),
+generalized dissimilarity measure between variables (\code{gdis}),
+and predictability score (\code{pscore}) based on mutual dependency.
 }
 \examples{
 # Generalized correlation measure

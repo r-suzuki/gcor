@@ -1,9 +1,11 @@
-#' Estimate mutual dependencies and related measures
+#' Estimate mutual dependency and related measures
 #'
-#' @description Estimate generalized correlation measure, generalized distance between variables,
-#' and predictability score based on mutual dependencies.
+#' @description Estimate generalized correlation measure (`gcor`),
+#' generalized dissimilarity between variables (`gdis`), and
+#' predictability score (`pscore`) based on mutual dependency.
 #'
 #' @param x a vector, matrix, data frame or formula. If formula, `data` should be specified.
+#' `gdis` requires a matrix or data frame.
 #' @param y `NULL` (default) or a vector, matrix or data frame with compatible dimensions to `x`.
 #' @param k `NULL` (default) or an integer specifying the number of groups for discretization.
 #' Numerical data are divided into `k` groups using `k`-quantiles.
@@ -11,6 +13,8 @@
 #' @param data `NULL` (default) or a data frame. Required if `x` is a formula.
 #' @param drop a logical. If `TRUE`, the returned value is coerced to
 #' a vector when one of its dimensions is one.
+#' @param ... additional arguments (`diag` and `upper`) passed to `as.dist` function.
+#' See \link{as.dist} for details.
 #'
 #' @return For `gcor` and `pscore`, a numeric matrix is returned (or a vector if `drop = TRUE`).
 #' For `gdis`, an object of class `"dist"` is returned.
@@ -39,6 +43,7 @@
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @name mdep-package
 #' @docType _PACKAGE
+#' @aliases mdep
 NULL
 
 # @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
@@ -47,7 +52,8 @@ NULL
 # @param xname a character to be used as the name of `x`, when x is an atomic vector.
 # @param yname a character used as the name of `y` (same as `xname` for `x`).
 mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
-                 xname = deparse1(substitute(x)), yname = deparse1(substitute(y))
+                 xname = deparse1(substitute(x)), yname = deparse1(substitute(y)),
+                 ...
                  ) {
   IS_XY_SYNMETRIC <- FALSE
   MEASURES <- c("cor", "dist", "pred")
@@ -133,7 +139,7 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
   }
 
   if(measure == "dist") {
-    ret <- as.dist(ret)
+    ret <- as.dist(ret, ...)
   } else if(drop) {
     if(nrow(ret) == 1 && ncol(ret) == 1) {
       ret <- as.vector(ret)
@@ -156,14 +162,18 @@ gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
 
 #' @rdname mdep-package
 #' @export
-gdis <- function(x, y = NULL, k = NULL, data = NULL) {
-  mdep(x = x, y = y, k = k, data = data, measure = "dist",
+pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
+  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "pred",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
 #' @rdname mdep-package
 #' @export
-pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "pred",
-       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
+gdis <- function(x, k = NULL, ...) {
+  if(!is.matrix(x) && !is.data.frame(x)) {
+    stop("x should be a matrix or data frame.")
+  }
+
+  mdep(x = x, y = NULL, k = k, data = data, measure = "dist",
+       xname = deparse1(substitute(x)), yname = deparse1(substitute(y)), ...)
 }
