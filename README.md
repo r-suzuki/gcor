@@ -9,7 +9,9 @@
 dependency, and other related methods for data analysis.
 
 It features a generalized version of (absolute) correlation coefficient
-for arbitrary types of data, including categorical variables.
+for arbitrary types of data, including categorical variables. Missing
+values can also be handled naturally by treating them as observations of
+a single categorical value, namely `NA`.
 
 **Note that this project is in an early stage of development, so changes
 may occur frequently.**
