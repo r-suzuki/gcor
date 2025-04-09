@@ -9,27 +9,33 @@
 }
 
 # returns a list containing the estimated values, and other quantities for further computations.
-.mdep_quantile_grid <- function(x, y, k, includeNA = TRUE) {
+.mdep_quantile_grid <- function(x, y, k, na.rm = FALSE) {
   stopifnot(length(x) == length(y))
-  stopifnot(length(x) > 0)
 
-  phi <- kx <- ky <- numeric(length(k))
-  n <- length(x)
+  if(length(x) == 0) {
+    phi <- rep(NA_real_, length(k))
+    kx <- ky <- rep(0, length(k))
+  } else {
+    phi <- kx <- ky <- numeric(length(k))
 
-  for(i in seq_along(k)) {
-    xx <- if(is.numeric(x)) .div(x, k[i]) else x
-    yy <- if(is.numeric(y)) .div(y, k[i]) else y
+    for(i in seq_along(k)) {
+      xx <- if(is.numeric(x)) .div(x, k[i]) else x
+      yy <- if(is.numeric(y)) .div(y, k[i]) else y
 
-    nn <- xtabs(~ xx + yy, addNA = includeNA)
+      nn <- xtabs(~ xx + yy, addNA = !na.rm)
+      nx  <- apply(nn, 1, sum)
+      ny  <- apply(nn, 2, sum)
 
-    nx  <- apply(nn, 1, sum)
-    ny  <- apply(nn, 2, sum)
+      # remove rows with p(x) = 0, and cols with p(y) = 0
+      nn <- nn[nx > 0, ny > 0, drop =FALSE]
+      nx <- nx[nx > 0]
+      ny <- ny[ny > 0]
 
-    phi[i] <- sum(nn^2 / outer(nx, ny))
-    kx[i] <- length(nx)
-    ky[i] <- length(ny)
+      phi[i] <- sum(nn^2 / outer(nx, ny))
+      kx[i] <- length(nx)
+      ky[i] <- length(ny)
+    }
   }
-
   ret <- list(estimate = phi, kx = kx, ky = ky)
 
   return(ret)
@@ -41,7 +47,9 @@
   return(ret)
 }
 
-.gen_msg <- function(par, val, lst) {
-  paste0("Unsupported ", par, ": ", val, "\n",
-         "Should be one of ", paste(lst, collapse = ", "))
+.gen_msg <- function(par, val, lst, pmatch = FALSE) {
+  paste0('Unsupported argument: ', par, ' = "', val, '"\n',
+         'Should be ',
+         (if(pmatch) '(an abbreviation of) ' else ''),
+         'one of "', paste(lst, collapse = '", "'), '"')
 }
