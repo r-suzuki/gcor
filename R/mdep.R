@@ -13,6 +13,17 @@
 #' @param data `NULL` (default) or a data frame. Required if `x` is a formula.
 #' @param drop a logical. If `TRUE`, the returned value is coerced to
 #' a vector when one of its dimensions is one.
+#' @param use a character specifying how to handle missing values.
+#' It should be (an abbreviation of) one of the following:
+#' \describe{
+#'   \item{"everything"}{(default) Treat missing values as observations of a single
+#' categorical value, namely `NA`. Recommended for reflecting missing patterns in the analysis.}
+#'   \item{"complete.obs"}{Casewise deletion; rows containing any missing value are removed.}
+#'   \item{"pairwise.complete.obs"}{Pairwise deletion; for any pair of columns (x,y),
+#' the i-th row is removed if x\[i\] or y\[i\] is missing.
+#' This process is applied per pair; the same row is not removed with another pair (w,z),
+#' if both w\[i\] and z\[i\] are not missing.}
+#' }
 #' @param ... additional arguments (`diag` and `upper`) passed to `as.dist` function.
 #' See \link{as.dist} for details.
 #'
@@ -42,7 +53,6 @@
 #' ps <- pscore(Species ~ ., data = iris)
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @name mdep-package
-#' @docType _PACKAGE
 #' @aliases mdep
 NULL
 
@@ -51,12 +61,14 @@ NULL
 # Similarly, `gdis` wraps `measure = "dist"`, and `pscore` wraps `measure = "pred"`.
 # @param xname a character to be used as the name of `x`, when x is an atomic vector.
 # @param yname a character used as the name of `y` (same as `xname` for `x`).
-mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
+mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, use = "everything",
+                 measure,
                  xname = deparse1(substitute(x)), yname = deparse1(substitute(y)),
                  ...
                  ) {
   IS_XY_SYNMETRIC <- FALSE
   MEASURES <- c("cor", "dist", "pred")
+  USE <- c("everything", "complete.obs", "pairwise.complete.obs")
   xx <- yy <- kk <- ret <- NULL
 
   if(is.na(match(measure, MEASURES))) {
@@ -65,6 +77,11 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
 
   if(is.null(y) & is.atomic(x) && is.null(dim(x))) {
     stop("Supply non-NULL y if x is a non-matrix atomic vector.")
+  }
+
+  use_pmatch <- USE[pmatch(use, USE)]
+  if(is.na(use_pmatch)) {
+    stop(.gen_msg("use", use, USE, pmatch = TRUE))
   }
 
   if(inherits(x, "formula")) {
@@ -105,6 +122,11 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
   }
 
   stopifnot(nrow(xx) == nrow(yy))
+  if(use_pmatch == "complete.obs") {
+    cc <- complete.cases(xx, yy)
+    xx <- subset(xx, cc)
+    yy <- subset(yy, cc)
+  }
 
   if(is.null(k)) k <- pmax(2, floor(sqrt(nrow(xx) / 10)))
   stopifnot(length(k) == 1)
@@ -120,15 +142,15 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
       } else if(IS_XY_SYNMETRIC && i == j) {
         ret[i, j] <- if(measure == "dist") 0.0 else 1.0
       } else {
-        m_ij <- .mdep_quantile_grid(xx[,i], yy[,j], k)
+        m_ij <- .mdep_quantile_grid(xx[,i], yy[,j], k,
+                                    na.rm = (use_pmatch == "pairwise.complete.obs"))
+        phi_ij <- m_ij$estimate
 
         # phi_ij should be greater or equal to 1, but estimated values
         # with some approximation could be less than 1. It is adjusted here.
-        phi_ij <- if(m_ij$estimate < 1) {
+        if(!is.na(phi_ij) && phi_ij < 1) {
           warning("Estimated mutual dependency < 1; adjusted to 1.")
-          1
-        } else {
-          m_ij$estimate
+          phi_ij <- 1
         }
 
         r2 <- 1 - 1/phi_ij
@@ -172,25 +194,25 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
 
 #' @rdname mdep-package
 #' @export
-gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "cor",
+gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE, use = "everything") {
+  mdep(x = x, y = y, k = k, data = data, drop = drop, use = use, measure = "cor",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
 #' @rdname mdep-package
 #' @export
-gdis <- function(x, k = NULL, ...) {
+gdis <- function(x, k = NULL, use = "everything", ...) {
   if(!is.matrix(x) && !is.data.frame(x)) {
     stop("x should be a matrix or data frame.")
   }
 
-  mdep(x = x, y = NULL, k = k, data = data, measure = "dist",
+  mdep(x = x, y = NULL, k = k, data = data, use = use, measure = "dist",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)), ...)
 }
 
 #' @rdname mdep-package
 #' @export
-pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE) {
-  mdep(x = x, y = y, k = k, data = data, drop = drop, measure = "pred",
+pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE, use = "everything") {
+  mdep(x = x, y = y, k = k, data = data, drop = drop, use = use, measure = "pred",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
