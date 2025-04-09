@@ -14,11 +14,16 @@
 #' @param drop a logical. If `TRUE`, the returned value is coerced to
 #' a vector when one of its dimensions is one.
 #' @param use a character specifying how to handle missing values.
-#' It should be (an abbreviation of) one of "everything" (default.
-#' Treats missing values as a single observed categorical value, namely `NA`),
-#' "complete.obs" (casewise deletion; rows containing any missing value are removed),
-#' or "pairwise.complete.obs" (pairwise deletion; for any pair (x,y), the i-th row
-#' is removed if x\[i\] or y\[i\] is missing. It does not affect another pair, e.g. (w,z)).
+#' It should be (an abbreviation of) one of the following:
+#' \describe{
+#'   \item{"everything"}{(default) Treat missing values as observations of a single
+#' categorical value, namely `NA`. Recommended for reflecting missing patterns in the analysis.}
+#'   \item{"complete.obs"}{Casewise deletion; rows containing any missing value are removed.}
+#'   \item{"pairwise.complete.obs"}{Pairwise deletion; for any pair of columns (x,y),
+#' the i-th row is removed if x\[i\] or y\[i\] is missing.
+#' This process is applied per pair; the same row is not removed with another pair (w,z),
+#' if both w\[i\] and z\[i\] are not missing.}
+#' }
 #' @param ... additional arguments (`diag` and `upper`) passed to `as.dist` function.
 #' See \link{as.dist} for details.
 #'
