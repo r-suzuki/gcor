@@ -122,17 +122,34 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
       } else {
         m_ij <- .mdep_quantile_grid(xx[,i], yy[,j], k)
 
-        kk <- sqrt(m_ij$kx) * sqrt(m_ij$ky)
-        r2 <- 1 - 1/m_ij$estimate
+        # phi_ij should be greater or equal to 1, but approximated values
+        # may take values less than 1. It is adjusted here.
+        phi_ij <- if(m_ij$estimate < 1) {
+          warning("Estimated mutual dependency < 1; adjusted to 1.")
+          1
+        } else {
+          m_ij$estimate
+        }
+
+        r2 <- 1 - 1/phi_ij
+
+        kx <- m_ij$kx
+        ky <- m_ij$ky
+        kk <- sqrt(kx) * sqrt(ky)
+
+        # If kk == 1, both x and y is constant.
+        # In this case gcor(x,y) = 1 and gdis(x,y) = 0.
         if(measure == "cor") {
-          ret[i, j] <- sqrt(r2 / (1 - 1/kk))
+          ret[i, j] <- if(kk == 1) 1 else sqrt(r2 / (1 - 1/kk))
           if(IS_XY_SYNMETRIC) ret[j, i]  <- ret[i, j]
         } else if(measure == "dist") {
-          ret[i, j] <- sqrt(1 - r2 / (1 - 1/kk))
+          ret[i, j] <- if(kk == 1) 0 else sqrt(1 - r2 / (1 - 1/kk))
           if(IS_XY_SYNMETRIC) ret[j, i] <- ret[i, j]
         } else if(measure == "pred") {
-          ret[i, j] <- sqrt(r2 / (1 - 1/m_ij$ky))
-          if(IS_XY_SYNMETRIC) ret[j, i] <- sqrt(r2 / (1 - 1/m_ij$kx))
+          # If ky == 1, y is constant and "perfectly predictable".
+          # So pscore(x,y) = 1.
+          ret[i, j] <- if(ky == 1) 1 else sqrt(r2 / (1 - 1/ky))
+          if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 1) 1 else sqrt(r2 / (1 - 1/kx))
         }
       }
     }
