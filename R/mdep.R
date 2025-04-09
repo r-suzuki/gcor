@@ -122,8 +122,8 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, measure,
       } else {
         m_ij <- .mdep_quantile_grid(xx[,i], yy[,j], k)
 
-        # phi_ij should be greater or equal to 1, but approximated values
-        # may take values less than 1. It is adjusted here.
+        # phi_ij should be greater or equal to 1, but estimated values
+        # with some approximation could be less than 1. It is adjusted here.
         phi_ij <- if(m_ij$estimate < 1) {
           warning("Estimated mutual dependency < 1; adjusted to 1.")
           1
