@@ -43,9 +43,10 @@
   return(ret)
 }
 
-.gen_msg <- function(par, val, lst, pmatch = FALSE) {
-  paste0('Unsupported argument: ', par, ' = "', val, '"\n',
-         'Should be ',
-         (if(pmatch) '(an abbreviation of) ' else ''),
-         'one of "', paste(lst, collapse = '", "'), '"')
+.gen_msg <- function(par, val, lst) {
+  if(is.character(val)) val <- paste0('"', val, '"')
+  if(is.character(lst)) lst <- paste0('"', lst, '"')
+
+  paste0("Unsupported argument: ", par, " = ", val, "\n",
+         "  Should be one of ", paste(lst, collapse = ", "))
 }
