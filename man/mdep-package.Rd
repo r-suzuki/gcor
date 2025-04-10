@@ -8,11 +8,11 @@
 \alias{pscore}
 \title{Estimate mutual dependency and related measures}
 \usage{
-gcor(x, y = NULL, k = NULL, data = NULL, drop = TRUE, use = "everything")
+gcor(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, use = "everything")
 
 gdis(x, k = NULL, use = "everything", ...)
 
-pscore(x, y = NULL, k = NULL, data = NULL, drop = TRUE, use = "everything")
+pscore(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, use = "everything")
 }
 \arguments{
 \item{x}{a vector, matrix, data frame or formula. If formula, \code{data} should be specified.
@@ -26,7 +26,7 @@ If \code{NULL}, it is determined automatically.}
 
 \item{data}{\code{NULL} (default) or a data frame. Required if \code{x} is a formula.}
 
-\item{drop}{a logical. If \code{TRUE}, the returned value is coerced to
+\item{simplify}{a logical. If \code{TRUE}, the returned value is coerced to
 a vector when one of its dimensions is one.}
 
 \item{use}{a character specifying how to handle missing values.
@@ -45,7 +45,7 @@ if both w[i] and z[i] are not missing.}
 See \link{as.dist} for details.}
 }
 \value{
-For \code{gcor} and \code{pscore}, a numeric matrix is returned (or a vector if \code{drop = TRUE}).
+For \code{gcor} and \code{pscore}, a numeric matrix is returned (or a vector if \code{simplify = TRUE}).
 For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{

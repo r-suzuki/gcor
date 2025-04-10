@@ -11,7 +11,7 @@
 #' Numerical data are divided into `k` groups using `k`-quantiles.
 #' If `NULL`, it is determined automatically.
 #' @param data `NULL` (default) or a data frame. Required if `x` is a formula.
-#' @param drop a logical. If `TRUE`, the returned value is coerced to
+#' @param simplify a logical. If `TRUE`, the returned value is coerced to
 #' a vector when one of its dimensions is one.
 #' @param use a character specifying how to handle missing values.
 #' It should be (an abbreviation of) one of the following:
@@ -27,7 +27,7 @@
 #' @param ... additional arguments (`diag` and `upper`) passed to `as.dist` function.
 #' See \link{as.dist} for details.
 #'
-#' @return For `gcor` and `pscore`, a numeric matrix is returned (or a vector if `drop = TRUE`).
+#' @return For `gcor` and `pscore`, a numeric matrix is returned (or a vector if `simplify = TRUE`).
 #' For `gdis`, an object of class `"dist"` is returned.
 #'
 #' @references
@@ -61,7 +61,7 @@ NULL
 # Similarly, `gdis` wraps `measure = "dist"`, and `pscore` wraps `measure = "pred"`.
 # @param xname a character to be used as the name of `x`, when x is an atomic vector.
 # @param yname a character used as the name of `y` (same as `xname` for `x`).
-mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, use = "everything",
+mdep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, use = "everything",
                  measure,
                  xname = deparse1(substitute(x)), yname = deparse1(substitute(y)),
                  ...
@@ -179,7 +179,7 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, use = "everyt
 
   if(measure == "dist") {
     ret <- as.dist(ret, ...)
-  } else if(drop) {
+  } else if(simplify) {
     if(nrow(ret) == 1 && ncol(ret) == 1) {
       ret <- as.vector(ret)
     } else if(nrow(ret) == 1) {
@@ -194,8 +194,8 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, use = "everyt
 
 #' @rdname mdep-package
 #' @export
-gcor <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE, use = "everything") {
-  mdep(x = x, y = y, k = k, data = data, drop = drop, use = use, measure = "cor",
+gcor <- function(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, use = "everything") {
+  mdep(x = x, y = y, k = k, data = data, simplify = simplify, use = use, measure = "cor",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
@@ -212,7 +212,7 @@ gdis <- function(x, k = NULL, use = "everything", ...) {
 
 #' @rdname mdep-package
 #' @export
-pscore <- function(x, y = NULL, k = NULL, data = NULL, drop = TRUE, use = "everything") {
-  mdep(x = x, y = y, k = k, data = data, drop = drop, use = use, measure = "pred",
+pscore <- function(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, use = "everything") {
+  mdep(x = x, y = y, k = k, data = data, simplify = simplify, use = use, measure = "pred",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
