@@ -52,10 +52,10 @@ For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{
 Estimate measures based on mutual dependency, which includes:
-\describe{
-\item{\code{gcor}}{Generalized correlation measure}
-\item{\code{gdis}}{Dissimilarity between variables}
-\item{\code{pscore}}{Predictability score}
+\itemize{
+\item{Generalized correlation measure (\code{gcor})}
+\item{Dissimilarity between variables (\code{gdis})}
+\item{Predictability score (\code{pscore})}
 }
 }
 \examples{
