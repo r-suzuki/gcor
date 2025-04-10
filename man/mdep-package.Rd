@@ -8,11 +8,11 @@
 \alias{pscore}
 \title{Estimate mutual dependency and related measures}
 \usage{
-gcor(x, y = NULL, k = NULL, data = NULL, drop = TRUE, use = "everything")
+gcor(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, dropNA = "none")
 
-gdis(x, k = NULL, use = "everything", ...)
+gdis(x, k = NULL, dropNA = "none", ...)
 
-pscore(x, y = NULL, k = NULL, data = NULL, drop = TRUE, use = "everything")
+pscore(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, dropNA = "none")
 }
 \arguments{
 \item{x}{a vector, matrix, data frame or formula. If formula, \code{data} should be specified.
@@ -26,26 +26,28 @@ If \code{NULL}, it is determined automatically.}
 
 \item{data}{\code{NULL} (default) or a data frame. Required if \code{x} is a formula.}
 
-\item{drop}{a logical. If \code{TRUE}, the returned value is coerced to
+\item{simplify}{a logical. If \code{TRUE}, the returned value is coerced to
 a vector when one of its dimensions is one.}
 
-\item{use}{a character specifying how to handle missing values.
-It should be (an abbreviation of) one of the following:
+\item{dropNA}{a character specifying how to handle missing values.
+It should be one of the following:
 \describe{
-\item{"everything"}{(default) Treat missing values as observations of a single
+\item{\code{"none"}}{(default) Treat missing values as observations of a single
 categorical value, namely \code{NA}. Recommended for reflecting missing patterns in the analysis.}
-\item{"complete.obs"}{Casewise deletion; rows containing any missing value are removed.}
-\item{"pairwise.complete.obs"}{Pairwise deletion; for any pair of columns (x,y),
+\item{\code{"casewise"}}{Casewise deletion; rows containing any missing value are removed.
+Similar to \code{use = "complete.obs"} in \code{\link{cor}}.}
+\item{\code{"pairwise"}}{Pairwise deletion; for any pair of columns (x,y),
 the i-th row is removed if x[i] or y[i] is missing.
 This process is applied per pair; the same row is not removed with another pair (w,z),
-if both w[i] and z[i] are not missing.}
+if both w[i] and z[i] are not missing.
+Similar to \code{use = "pairwise.complete.obs"} in \code{\link{cor}}.}
 }}
 
 \item{...}{additional arguments (\code{diag} and \code{upper}) passed to \code{as.dist} function.
 See \link{as.dist} for details.}
 }
 \value{
-For \code{gcor} and \code{pscore}, a numeric matrix is returned (or a vector if \code{drop = TRUE}).
+For \code{gcor} and \code{pscore}, a numeric matrix is returned (or a vector if \code{simplify = TRUE}).
 For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{

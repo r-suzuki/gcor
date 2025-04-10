@@ -9,7 +9,7 @@
 }
 
 # returns a list containing the estimated values, and other quantities for further computations.
-.mdep_quantile_grid <- function(x, y, k, na.rm = FALSE) {
+.mdep_quantile_grid <- function(x, y, k, useNA = TRUE) {
   stopifnot(length(x) == length(y))
 
   if(length(x) == 0) {
@@ -22,14 +22,10 @@
       xx <- if(is.numeric(x)) .div(x, k[i]) else x
       yy <- if(is.numeric(y)) .div(y, k[i]) else y
 
-      nn <- xtabs(~ xx + yy, addNA = !na.rm)
+      # drop.unused.levels = TRUE is required to avoid marginal probability 0
+      nn <- xtabs(~ xx + yy, addNA = useNA, drop.unused.levels = TRUE)
       nx  <- apply(nn, 1, sum)
       ny  <- apply(nn, 2, sum)
-
-      # remove rows with p(x) = 0, and cols with p(y) = 0
-      nn <- nn[nx > 0, ny > 0, drop =FALSE]
-      nx <- nx[nx > 0]
-      ny <- ny[ny > 0]
 
       phi[i] <- sum(nn^2 / outer(nx, ny))
       kx[i] <- length(nx)
@@ -47,9 +43,10 @@
   return(ret)
 }
 
-.gen_msg <- function(par, val, lst, pmatch = FALSE) {
-  paste0('Unsupported argument: ', par, ' = "', val, '"\n',
-         'Should be ',
-         (if(pmatch) '(an abbreviation of) ' else ''),
-         'one of "', paste(lst, collapse = '", "'), '"')
+.gen_msg <- function(par, val, lst) {
+  if(is.character(val)) val <- paste0('"', val, '"')
+  if(is.character(lst)) lst <- paste0('"', lst, '"')
+
+  paste0("Unsupported argument: ", par, " = ", val, "\n",
+         "  Should be one of ", paste(lst, collapse = ", "))
 }
