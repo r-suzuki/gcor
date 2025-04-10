@@ -44,16 +44,19 @@ Similar to \code{use = "pairwise.complete.obs"} in \code{\link{cor}}.}
 }}
 
 \item{...}{additional arguments (\code{diag} and \code{upper}) passed to \code{as.dist} function.
-See \link{as.dist} for details.}
+See \code{\link{as.dist}} for details.}
 }
 \value{
 For \code{gcor} and \code{pscore}, a numeric matrix is returned (or a vector if \code{simplify = TRUE}).
 For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{
-Estimate generalized correlation measure (\code{gcor}),
-generalized dissimilarity between variables (\code{gdis}), and
-predictability score (\code{pscore}) based on mutual dependency.
+Estimate measures based on mutual dependency, which includes:
+\itemize{
+\item{Generalized correlation measure (\code{gcor})}
+\item{Dissimilarity between variables (\code{gdis})}
+\item{Predictability score (\code{pscore})}
+}
 }
 \examples{
 # Generalized correlation measure

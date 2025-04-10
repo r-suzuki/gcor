@@ -1,8 +1,11 @@
 #' Estimate mutual dependency and related measures
 #'
-#' @description Estimate generalized correlation measure (`gcor`),
-#' generalized dissimilarity between variables (`gdis`), and
-#' predictability score (`pscore`) based on mutual dependency.
+#' @description Estimate measures based on mutual dependency, which includes:
+#' \itemize{
+#'   \item{Generalized correlation measure (`gcor`)}
+#'   \item{Dissimilarity between variables (`gdis`)}
+#'   \item{Predictability score (`pscore`)}
+#' }
 #'
 #' @param x a vector, matrix, data frame or formula. If formula, `data` should be specified.
 #' `gdis` requires a matrix or data frame.
