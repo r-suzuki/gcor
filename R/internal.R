@@ -9,7 +9,7 @@
 }
 
 # returns a list containing the estimated values, and other quantities for further computations.
-.mdep_quantile_grid <- function(x, y, k, na.rm = FALSE) {
+.mdep_quantile_grid <- function(x, y, k, useNA = TRUE) {
   stopifnot(length(x) == length(y))
 
   if(length(x) == 0) {
@@ -23,7 +23,7 @@
       yy <- if(is.numeric(y)) .div(y, k[i]) else y
 
       # drop.unused.levels = TRUE is required to avoid marginal probability 0
-      nn <- xtabs(~ xx + yy, addNA = !na.rm, drop.unused.levels = TRUE)
+      nn <- xtabs(~ xx + yy, addNA = useNA, drop.unused.levels = TRUE)
       nx  <- apply(nn, 1, sum)
       ny  <- apply(nn, 2, sum)
 

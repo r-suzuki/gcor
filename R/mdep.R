@@ -143,7 +143,7 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, drop = FALSE, use = "everyt
         ret[i, j] <- if(measure == "dist") 0.0 else 1.0
       } else {
         m_ij <- .mdep_quantile_grid(xx[,i], yy[,j], k,
-                                    na.rm = (use_pmatch == "pairwise.complete.obs"))
+                                    useNA = (use_pmatch != "pairwise.complete.obs"))
         phi_ij <- m_ij$estimate
 
         # phi_ij should be greater or equal to 1, but estimated values
