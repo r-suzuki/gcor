@@ -22,14 +22,10 @@
       xx <- if(is.numeric(x)) .div(x, k[i]) else x
       yy <- if(is.numeric(y)) .div(y, k[i]) else y
 
-      nn <- xtabs(~ xx + yy, addNA = !na.rm)
+      # drop.unused.levels = TRUE is required to avoid marginal probability 0
+      nn <- xtabs(~ xx + yy, addNA = !na.rm, drop.unused.levels = TRUE)
       nx  <- apply(nn, 1, sum)
       ny  <- apply(nn, 2, sum)
-
-      # remove rows with p(x) = 0, and cols with p(y) = 0
-      nn <- nn[nx > 0, ny > 0, drop =FALSE]
-      nx <- nx[nx > 0]
-      ny <- ny[ny > 0]
 
       phi[i] <- sum(nn^2 / outer(nx, ny))
       kx[i] <- length(nx)
