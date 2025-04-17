@@ -14,12 +14,12 @@ knitr::opts_chunk$set(
 pkgload::load_all(".")
 ```
 
-# mdep
+# mudep
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-**mdep** is an R package which provides measures based on mutual dependency, and other related methods for data analysis.
+**mudep** is an R package which provides measures based on mutual dependency, and other related methods for data analysis.
 
 It features a generalized version of (absolute) correlation coefficient for arbitrary types of data, including categorical variables. Missing values can also be handled naturally by treating them as observations of a single categorical value, namely `NA`.
 
@@ -27,24 +27,24 @@ It features a generalized version of (absolute) correlation coefficient for arbi
 
 ## Installation
 
-You can install the development version of `mdep` from [GitHub](https://github.com/) with `pak`:
+You can install the development version of `mudep` from [GitHub](https://github.com/) with `pak`:
 
 ``` r
 # install.packages("pak")
-pak::pak("r-suzuki/mdep")
+pak::pak("r-suzuki/mudep")
 ```
 
 or with `devtools`:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("r-suzuki/mdep")
+devtools::install_github("r-suzuki/mudep")
 ```
 
 ## Example
 
 ```{r example}
-library(mdep)
+library(mudep)
 ```
 
 **Generalized correlation measure** takes values in $[0,1]$, which can capture
