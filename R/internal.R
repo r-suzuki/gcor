@@ -9,7 +9,7 @@
 }
 
 # returns a list containing the estimated values, and other quantities for further computations.
-.mdep_quantile_grid <- function(x, y, k, useNA = TRUE) {
+.mudep_quantile_grid <- function(x, y, k, useNA = TRUE) {
   stopifnot(length(x) == length(y))
 
   if(length(x) == 0) {

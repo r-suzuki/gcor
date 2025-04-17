@@ -1,11 +1,11 @@
 
-# mdep
+# mudep
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-**mdep** is an R package which provides measures based on mutual
+**mudep** is an R package which provides measures based on mutual
 dependency, and other related methods for data analysis.
 
 It features a generalized version of (absolute) correlation coefficient
@@ -18,25 +18,25 @@ may occur frequently.**
 
 ## Installation
 
-You can install the development version of `mdep` from
+You can install the development version of `mudep` from
 [GitHub](https://github.com/) with `pak`:
 
 ``` r
 # install.packages("pak")
-pak::pak("r-suzuki/mdep")
+pak::pak("r-suzuki/mudep")
 ```
 
 or with `devtools`:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("r-suzuki/mdep")
+devtools::install_github("r-suzuki/mudep")
 ```
 
 ## Example
 
 ``` r
-library(mdep)
+library(mudep)
 ```
 
 **Generalized correlation measure** takes values in $[0,1]$, which can
