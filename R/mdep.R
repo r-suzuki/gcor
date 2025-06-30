@@ -57,16 +57,16 @@
 #' # Predictability of Species from other variables
 #' ps <- pscore(Species ~ ., data = iris)
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
-#' @name mudep-package
-#' @aliases mudep
+#' @name mdep-package
+#' @aliases mdep
 NULL
 
 # @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.
-# `gcor` is a wrapper for `mudep` with `measure = "cor"`.
+# `gcor` is a wrapper for `mdep` with `measure = "cor"`.
 # Similarly, `gdis` wraps `measure = "dist"`, and `pscore` wraps `measure = "pred"`.
 # @param xname a character to be used as the name of `x`, when x is an atomic vector.
 # @param yname a character used as the name of `y` (same as `xname` for `x`).
-mudep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, dropNA = "none",
+mdep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, dropNA = "none",
                  measure,
                  xname = deparse1(substitute(x)), yname = deparse1(substitute(y)),
                  ...
@@ -146,7 +146,7 @@ mudep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, dropNA =
       } else if(IS_XY_SYNMETRIC && i == j) {
         ret[i, j] <- if(measure == "dist") 0.0 else 1.0
       } else {
-        m_ij <- .mudep_quantile_grid(xx[,i], yy[,j], k,
+        m_ij <- .mdep_quantile_grid(xx[,i], yy[,j], k,
                                     useNA = (dropNA != "pairwise"))
         phi_ij <- m_ij$estimate
 
@@ -196,27 +196,27 @@ mudep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, dropNA =
   return(ret)
 }
 
-#' @rdname mudep-package
+#' @rdname mdep-package
 #' @export
 gcor <- function(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, dropNA = "none") {
-  mudep(x = x, y = y, k = k, data = data, simplify = simplify, dropNA = dropNA, measure = "cor",
+  mdep(x = x, y = y, k = k, data = data, simplify = simplify, dropNA = dropNA, measure = "cor",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
-#' @rdname mudep-package
+#' @rdname mdep-package
 #' @export
 gdis <- function(x, k = NULL, dropNA = "none", ...) {
   if(!is.matrix(x) && !is.data.frame(x)) {
     stop("x should be a matrix or data frame.")
   }
 
-  mudep(x = x, y = NULL, k = k, data = data, dropNA = dropNA, measure = "dist",
+  mdep(x = x, y = NULL, k = k, data = data, dropNA = dropNA, measure = "dist",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)), ...)
 }
 
-#' @rdname mudep-package
+#' @rdname mdep-package
 #' @export
 pscore <- function(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, dropNA = "none") {
-  mudep(x = x, y = y, k = k, data = data, simplify = simplify, dropNA = dropNA, measure = "pred",
+  mdep(x = x, y = y, k = k, data = data, simplify = simplify, dropNA = dropNA, measure = "pred",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
