@@ -172,7 +172,7 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, dropNA = 
           ret[i, j] <- if(kk == 1) 0 else sqrt(1 - r2 / (1 - 1/kk))
           if(IS_XY_SYNMETRIC) ret[j, i] <- ret[i, j]
         } else if(measure == "pred") {
-          # If ky == 1, y is constant and "perfectly predictable".
+          # If ky == 1, y is constant and completely dependent on any random variable.
           # So pscore(x,y) = 1.
           ret[i, j] <- if(ky == 1) 1 else sqrt(r2 / (1 - 1/ky))
           if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 1) 1 else sqrt(r2 / (1 - 1/kx))
