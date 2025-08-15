@@ -42,7 +42,7 @@ library(mdep)
 **Generalized correlation measure** takes values in $[0,1]$, which can
 capture both linear and nonlinear relations.
 
-When the joint distribution of $x,y$ is bivariate normal, its
+When the joint distribution of $(X,Y)$ is bivariate normal, its
 theoretical value coincides with the absolute value of the correlation
 coefficient.
 
@@ -57,11 +57,11 @@ gcor(iris)
 #> Species         0.8226041   0.6794982    0.9728947   0.9795837 1.0000000
 ```
 
-With $|r|$ as the generalized correlation between $x$ and $y$, we can
+With $r_g$ as the generalized correlation between $X$ and $Y$, we can
 define a dissimilarity measure:
 
 $$
-d(x,y) = \sqrt{1 - |r|^2}
+d(X,Y) = \sqrt{1 - r^2_g}
 $$
 
 It can be applied to cluster analysis:
@@ -89,9 +89,9 @@ text(mds[,1], mds[,2], rownames(mds))
 <img src="man/figures/README-example_iris_cmdscale-1.svg" width="100%" />
 
 The **predictability score** is another variation of the generalized
-correlation. It also takes values in $[0,1]$, reaching $1$ when $y$ is
-perfectly predictable by $x$ (i.e., when the conditional distribution
-$f(y \mid x)$ is a one-point distribution) and $0$ when $x$ and $y$ are
+correlation. It also takes values in $[0,1]$, reaching $1$ when $Y$ is
+completely dependent on $X$ (i.e., when the conditional distribution
+$f(Y \mid X)$ is a one-point distribution) and $0$ when $X$ and $Y$ are
 independent.
 
 ``` r
