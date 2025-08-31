@@ -14,37 +14,37 @@ knitr::opts_chunk$set(
 pkgload::load_all(".")
 ```
 
-# mdep
+# gcor
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-**mdep** is an R package which provides measures based on mutual dependency, and other related methods for data analysis.
+**gcor** is an R package which provides tools for multivariate data analysis based on a  generalized correlation measure.
 
-It features a generalized version of (absolute) correlation coefficient for arbitrary types of data, including categorical variables. Missing values can also be handled naturally by treating them as observations of a single categorical value, namely `NA`.
+It features a generalized version of (absolute) correlation coefficient for arbitrary types of data, including both numerical and categorical variables. Missing values can also be handled naturally by treating them as observations of a categorical value `NA`.
 
 **Note that this project is in an early stage of development, so changes may occur frequently.**
 
 ## Installation
 
-You can install the development version of `mdep` from [GitHub](https://github.com/) with `pak`:
+You can install the development version of `gcor` from [GitHub](https://github.com/) with `pak`:
 
 ``` r
 # install.packages("pak")
-pak::pak("r-suzuki/mdep")
+pak::pak("r-suzuki/gcor")
 ```
 
 or with `devtools`:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("r-suzuki/mdep")
+devtools::install_github("r-suzuki/gcor")
 ```
 
 ## Example
 
 ```{r example}
-library(mdep)
+library(gcor)
 ```
 
 **Generalized correlation measure** takes values in $[0,1]$, which can capture
