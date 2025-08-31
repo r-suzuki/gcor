@@ -2,7 +2,6 @@
 % Please edit documentation in R/mdep.R
 \name{gcor-package}
 \alias{gcor-package}
-\alias{mdep}
 \alias{gcor}
 \alias{gdis}
 \alias{pscore}
