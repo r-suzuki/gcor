@@ -57,7 +57,7 @@
 #' # Predictability of Species from other variables
 #' ps <- pscore(Species ~ ., data = iris)
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
-#' @name mdep-package
+#' @name gcor-package
 #' @aliases mdep
 NULL
 
@@ -196,14 +196,14 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, dropNA = 
   return(ret)
 }
 
-#' @rdname mdep-package
+#' @rdname gcor-package
 #' @export
 gcor <- function(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, dropNA = "none") {
   mdep(x = x, y = y, k = k, data = data, simplify = simplify, dropNA = dropNA, measure = "cor",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
-#' @rdname mdep-package
+#' @rdname gcor-package
 #' @export
 gdis <- function(x, k = NULL, dropNA = "none", ...) {
   if(!is.matrix(x) && !is.data.frame(x)) {
@@ -214,7 +214,7 @@ gdis <- function(x, k = NULL, dropNA = "none", ...) {
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)), ...)
 }
 
-#' @rdname mdep-package
+#' @rdname gcor-package
 #' @export
 pscore <- function(x, y = NULL, k = NULL, data = NULL, simplify = TRUE, dropNA = "none") {
   mdep(x = x, y = y, k = k, data = data, simplify = simplify, dropNA = dropNA, measure = "pred",
