@@ -1,4 +1,4 @@
-#' Estimate mutual dependency and related measures
+#' Estimate generalized correlation and related measures
 #'
 #' @description Estimate measures based on mutual dependency, which includes:
 #' \itemize{
@@ -59,6 +59,9 @@
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @name gcor-package
 #' @aliases mdep
+#'
+#' @importFrom utils data
+#' @importFrom stats as.dist complete.cases model.frame model.response setNames
 NULL
 
 # @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"pred"`.

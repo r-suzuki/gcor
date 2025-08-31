@@ -1,3 +1,4 @@
+#' @importFrom stats quantile
 .div <- function(x, k) {
   if(length(unique(x)) <= k) {
     ret <- as.factor(x)
@@ -9,6 +10,7 @@
 }
 
 # returns a list containing the estimated values, and other quantities for further computations.
+#' @importFrom stats xtabs
 .mdep_quantile_grid <- function(x, y, k, useNA = TRUE) {
   stopifnot(length(x) == length(y))
 
