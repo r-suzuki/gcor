@@ -58,7 +58,6 @@
 #' ps <- pscore(Species ~ ., data = iris)
 #' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @name gcor-package
-#' @aliases mdep
 #'
 #' @importFrom utils data
 #' @importFrom stats as.dist complete.cases model.frame model.response setNames
