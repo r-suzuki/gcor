@@ -39,6 +39,20 @@ devtools::install_github("r-suzuki/gcor")
 library(gcor)
 ```
 
+The **predictability score** is another variation of the generalized
+correlation. It also takes values in $[0,1]$, reaching $1$ when $Y$ is
+completely dependent on $X$ (i.e., when the conditional distribution
+$f(Y \mid X)$ is a one-point distribution) and $0$ when $X$ and $Y$ are
+independent.
+
+``` r
+# Predictability of Species from other variables
+ps <- pscore(Species ~ ., data = iris)
+dotchart(sort(ps), main = "Predictability of Species")
+```
+
+<img src="man/figures/README-example_iris_pscore-1.svg" width="100%" />
+
 **Generalized correlation measure** takes values in $[0,1]$, which can
 capture both linear and nonlinear relations.
 
@@ -87,17 +101,3 @@ text(mds[,1], mds[,2], rownames(mds))
 ```
 
 <img src="man/figures/README-example_iris_cmdscale-1.svg" width="100%" />
-
-The **predictability score** is another variation of the generalized
-correlation. It also takes values in $[0,1]$, reaching $1$ when $Y$ is
-completely dependent on $X$ (i.e., when the conditional distribution
-$f(Y \mid X)$ is a one-point distribution) and $0$ when $X$ and $Y$ are
-independent.
-
-``` r
-# Predictability of Species from other variables
-ps <- pscore(Species ~ ., data = iris)
-dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
-```
-
-<img src="man/figures/README-example_iris_pscore-1.svg" width="100%" />

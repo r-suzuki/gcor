@@ -36,25 +36,19 @@
 <line x1='105.47' y1='195.55' x2='473.76' y2='195.55' style='stroke-width: 0.75; stroke: #BEBEBE; stroke-dasharray: 1.00,3.00;' />
 <line x1='105.47' y1='150.05' x2='473.76' y2='150.05' style='stroke-width: 0.75; stroke: #BEBEBE; stroke-dasharray: 1.00,3.00;' />
 <line x1='105.47' y1='104.54' x2='473.76' y2='104.54' style='stroke-width: 0.75; stroke: #BEBEBE; stroke-dasharray: 1.00,3.00;' />
-<circle cx='328.29' cy='241.06' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
-<circle cx='364.05' cy='195.55' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
-<circle cx='383.26' cy='150.05' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
-<circle cx='383.76' cy='104.54' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
+<circle cx='119.11' cy='241.06' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
+<circle cx='338.97' cy='195.55' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
+<circle cx='457.01' cy='150.05' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
+<circle cx='460.12' cy='104.54' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<line x1='119.11' y1='286.56' x2='460.12' y2='286.56' style='stroke-width: 0.75;' />
-<line x1='119.11' y1='286.56' x2='119.11' y2='293.76' style='stroke-width: 0.75;' />
-<line x1='187.31' y1='286.56' x2='187.31' y2='293.76' style='stroke-width: 0.75;' />
-<line x1='255.52' y1='286.56' x2='255.52' y2='293.76' style='stroke-width: 0.75;' />
-<line x1='323.72' y1='286.56' x2='323.72' y2='293.76' style='stroke-width: 0.75;' />
-<line x1='391.92' y1='286.56' x2='391.92' y2='293.76' style='stroke-width: 0.75;' />
-<line x1='460.12' y1='286.56' x2='460.12' y2='293.76' style='stroke-width: 0.75;' />
-<text x='119.11' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.0</text>
-<text x='187.31' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.2</text>
-<text x='255.52' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.4</text>
-<text x='323.72' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.6</text>
-<text x='391.92' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.8</text>
-<text x='460.12' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>1.0</text>
+<line x1='195.83' y1='286.56' x2='405.45' y2='286.56' style='stroke-width: 0.75;' />
+<line x1='195.83' y1='286.56' x2='195.83' y2='293.76' style='stroke-width: 0.75;' />
+<line x1='300.64' y1='286.56' x2='300.64' y2='293.76' style='stroke-width: 0.75;' />
+<line x1='405.45' y1='286.56' x2='405.45' y2='293.76' style='stroke-width: 0.75;' />
+<text x='195.83' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='23.36px' lengthAdjust='spacingAndGlyphs'>0.65</text>
+<text x='300.64' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='23.36px' lengthAdjust='spacingAndGlyphs'>0.70</text>
+<text x='405.45' y='312.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='23.36px' lengthAdjust='spacingAndGlyphs'>0.75</text>
 <polygon points='105.47,286.56 473.76,286.56 473.76,59.04 105.47,59.04 ' style='stroke-width: 0.75;' />
 <text x='289.62' y='34.70' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: "Arial";' textLength='166.37px' lengthAdjust='spacingAndGlyphs'>Predictability of Species</text>
 </g>
