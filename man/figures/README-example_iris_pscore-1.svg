@@ -36,10 +36,10 @@
 <line x1='105.47' y1='195.55' x2='473.76' y2='195.55' style='stroke-width: 0.75; stroke: #BEBEBE; stroke-dasharray: 1.00,3.00;' />
 <line x1='105.47' y1='150.05' x2='473.76' y2='150.05' style='stroke-width: 0.75; stroke: #BEBEBE; stroke-dasharray: 1.00,3.00;' />
 <line x1='105.47' y1='104.54' x2='473.76' y2='104.54' style='stroke-width: 0.75; stroke: #BEBEBE; stroke-dasharray: 1.00,3.00;' />
-<circle cx='350.83' cy='241.06' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
-<circle cx='399.63' cy='195.55' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
-<circle cx='450.88' cy='150.05' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
-<circle cx='453.16' cy='104.54' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
+<circle cx='328.29' cy='241.06' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
+<circle cx='364.05' cy='195.55' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
+<circle cx='383.26' cy='150.05' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
+<circle cx='383.76' cy='104.54' r='2.70' style='stroke-width: 0.75; fill: #FFFFFF;' />
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
 <line x1='119.11' y1='286.56' x2='460.12' y2='286.56' style='stroke-width: 0.75;' />

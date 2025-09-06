@@ -50,11 +50,11 @@ coefficient.
 # Generalized correlation measure
 gcor(iris)
 #>              Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-#> Sepal.Length    1.0000000   0.6180293    0.8449216   0.8300394 0.8226041
-#> Sepal.Width     0.6180293   1.0000000    0.6862189   0.6963419 0.6794982
-#> Petal.Length    0.8449216   0.6862189    1.0000000   0.9581278 0.9728947
-#> Petal.Width     0.8300394   0.6963419    0.9581278   1.0000000 0.9795837
-#> Species         0.8226041   0.6794982    0.9728947   0.9795837 1.0000000
+#> Sepal.Length    1.0000000   0.2349075    0.8846517   0.8741873 0.7623968
+#> Sepal.Width     0.2349075   1.0000000    0.3143301   0.2669031 0.6510740
+#> Petal.Length    0.8846517   0.3143301    1.0000000   0.9503289 0.8221674
+#> Petal.Width     0.8741873   0.2669031    0.9503289   1.0000000 0.8237429
+#> Species         0.7623968   0.6510740    0.8221674   0.8237429 1.0000000
 ```
 
 With $r_g$ as the generalized correlation between $X$ and $Y$, we can

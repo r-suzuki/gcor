@@ -29,10 +29,10 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpNTkuMDR8NDczLjc2fDU5LjA0fDI4Ni41Ng==)'>
-<text x='377.24' y='70.56' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='70.73px' lengthAdjust='spacingAndGlyphs'>Sepal.Length</text>
-<text x='130.71' y='236.99' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='64.70px' lengthAdjust='spacingAndGlyphs'>Sepal.Width</text>
-<text x='398.23' y='260.78' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='67.39px' lengthAdjust='spacingAndGlyphs'>Petal.Length</text>
-<text x='393.82' y='275.58' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='61.36px' lengthAdjust='spacingAndGlyphs'>Petal.Width</text>
-<text x='402.09' y='281.30' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='42.69px' lengthAdjust='spacingAndGlyphs'>Species</text>
+<text x='440.82' y='281.23' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='70.73px' lengthAdjust='spacingAndGlyphs'>Sepal.Length</text>
+<text x='88.09' y='230.37' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='64.70px' lengthAdjust='spacingAndGlyphs'>Sepal.Width</text>
+<text x='440.38' y='185.53' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='67.39px' lengthAdjust='spacingAndGlyphs'>Petal.Length</text>
+<text x='444.71' y='173.49' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='61.36px' lengthAdjust='spacingAndGlyphs'>Petal.Width</text>
+<text x='313.36' y='70.64' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='42.69px' lengthAdjust='spacingAndGlyphs'>Species</text>
 </g>
 </svg>

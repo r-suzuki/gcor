@@ -134,7 +134,9 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, dropNA = 
     yy <- subset(yy, cc)
   }
 
-  if(is.null(k)) k <- pmax(2, floor(sqrt(nrow(xx) / 10)))
+  # default minimum average sample size of each cell
+  MIN_AVG_SIZE <- 50
+  if(is.null(k)) k <- pmax(2, floor(sqrt(nrow(xx) / MIN_AVG_SIZE)))
   stopifnot(length(k) == 1)
 
   ret <- matrix(rep(NA_real_, ncol(xx) * ncol(yy)),
