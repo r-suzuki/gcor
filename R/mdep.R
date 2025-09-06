@@ -37,7 +37,7 @@
 #'
 #' @references
 #' Suzuki, R. (2025). *A generalization of correlation coefficient*. preprint.
-#' \url{https://r-suzuki.github.io/docs}
+#' \url{https://r-suzuki.github.io}
 #'
 #' @examples
 #' # Generalized correlation measure
