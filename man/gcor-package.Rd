@@ -78,5 +78,5 @@ dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 }
 \references{
 Suzuki, R. (2025). \emph{A generalization of correlation coefficient}. preprint.
-\url{https://r-suzuki.github.io/docs}
+\url{https://r-suzuki.github.io}
 }
