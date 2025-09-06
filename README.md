@@ -39,6 +39,20 @@ devtools::install_github("r-suzuki/gcor")
 library(gcor)
 ```
 
+The **predictability score** is another variation of the generalized
+correlation. It also takes values in $[0,1]$, reaching $1$ when $Y$ is
+completely dependent on $X$ (i.e., when the conditional distribution
+$f(Y \mid X)$ is a one-point distribution) and $0$ when $X$ and $Y$ are
+independent.
+
+``` r
+# Predictability of Species from other variables
+ps <- pscore(Species ~ ., data = iris)
+dotchart(sort(ps), main = "Predictability of Species")
+```
+
+<img src="man/figures/README-example_iris_pscore-1.svg" width="100%" />
+
 **Generalized correlation measure** takes values in $[0,1]$, which can
 capture both linear and nonlinear relations.
 
@@ -50,11 +64,11 @@ coefficient.
 # Generalized correlation measure
 gcor(iris)
 #>              Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-#> Sepal.Length    1.0000000   0.6180293    0.8449216   0.8300394 0.8226041
-#> Sepal.Width     0.6180293   1.0000000    0.6862189   0.6963419 0.6794982
-#> Petal.Length    0.8449216   0.6862189    1.0000000   0.9581278 0.9728947
-#> Petal.Width     0.8300394   0.6963419    0.9581278   1.0000000 0.9795837
-#> Species         0.8226041   0.6794982    0.9728947   0.9795837 1.0000000
+#> Sepal.Length    1.0000000   0.2349075    0.8846517   0.8741873 0.7623968
+#> Sepal.Width     0.2349075   1.0000000    0.3143301   0.2669031 0.6510740
+#> Petal.Length    0.8846517   0.3143301    1.0000000   0.9503289 0.8221674
+#> Petal.Width     0.8741873   0.2669031    0.9503289   1.0000000 0.8237429
+#> Species         0.7623968   0.6510740    0.8221674   0.8237429 1.0000000
 ```
 
 With $r_g$ as the generalized correlation between $X$ and $Y$, we can
@@ -87,17 +101,3 @@ text(mds[,1], mds[,2], rownames(mds))
 ```
 
 <img src="man/figures/README-example_iris_cmdscale-1.svg" width="100%" />
-
-The **predictability score** is another variation of the generalized
-correlation. It also takes values in $[0,1]$, reaching $1$ when $Y$ is
-completely dependent on $X$ (i.e., when the conditional distribution
-$f(Y \mid X)$ is a one-point distribution) and $0$ when $X$ and $Y$ are
-independent.
-
-``` r
-# Predictability of Species from other variables
-ps <- pscore(Species ~ ., data = iris)
-dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
-```
-
-<img src="man/figures/README-example_iris_pscore-1.svg" width="100%" />

@@ -37,11 +37,15 @@
 #'
 #' @references
 #' Suzuki, R. (2025). *A generalization of correlation coefficient*. preprint.
-#' \url{https://r-suzuki.github.io/docs}
+#' \url{https://r-suzuki.github.io}
 #'
 #' @examples
 #' # Generalized correlation measure
 #' gcor(iris)
+#'
+#' # Predictability of Species from other variables
+#' ps <- pscore(Species ~ ., data = iris)
+#' dotchart(sort(ps), main = "Predictability of Species")
 #'
 #' # Clustering
 #' gd <- gdis(iris)
@@ -53,10 +57,6 @@
 #' plot(mds, type = "n", xlab = "", ylab = "", asp = 1, axes = FALSE,
 #'      main = "cmdscale with gdis(iris)")
 #' text(mds[,1], mds[,2], rownames(mds))
-#'
-#' # Predictability of Species from other variables
-#' ps <- pscore(Species ~ ., data = iris)
-#' dotchart(sort(ps), xlim = c(0, 1), main = "Predictability of Species")
 #' @name gcor-package
 #'
 #' @importFrom utils data
@@ -134,7 +134,9 @@ mdep <- function(x, y = NULL, k = NULL, data = NULL, simplify = FALSE, dropNA = 
     yy <- subset(yy, cc)
   }
 
-  if(is.null(k)) k <- pmax(2, floor(sqrt(nrow(xx) / 10)))
+  # default minimum average sample size of each cell
+  MIN_AVG_SIZE <- 50
+  if(is.null(k)) k <- pmax(2, floor(sqrt(nrow(xx) / MIN_AVG_SIZE)))
   stopifnot(length(k) == 1)
 
   ret <- matrix(rep(NA_real_, ncol(xx) * ncol(yy)),
