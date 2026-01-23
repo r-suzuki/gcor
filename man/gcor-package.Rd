@@ -11,6 +11,7 @@ gcor(
   x,
   y = NULL,
   data = NULL,
+  type = "chisq",
   dropNA = "none",
   k = NULL,
   max_levels = 100,
@@ -21,13 +22,14 @@ dgcor(
   x,
   y = NULL,
   data = NULL,
+  type = "chisq",
   dropNA = "none",
   k = NULL,
   max_levels = 100,
   simplify = TRUE
 )
 
-gdis(x, dropNA = "none", k = NULL, max_levels = 100, ...)
+gdis(x, type = "chisq", dropNA = "none", k = NULL, max_levels = 100, ...)
 }
 \arguments{
 \item{x}{a vector, matrix, data frame or formula. If formula, \code{data} should be specified.
@@ -37,7 +39,14 @@ gdis(x, dropNA = "none", k = NULL, max_levels = 100, ...)
 
 \item{data}{\code{NULL} (default) or a data frame. Required if \code{x} is a formula.}
 
-\item{dropNA}{a character specifying how to handle missing values.
+\item{type}{a character string specifying a type of correlation measure to be computed.
+It should be one of the following:
+\describe{
+\item{\code{"chisq"}}{(default) Contingency correlation with chi-squared divergence}
+\item{\code{"KL"}}{Contingency correlation with KL divergence}
+}}
+
+\item{dropNA}{a character string specifying how to handle missing values.
 It should be one of the following:
 \describe{
 \item{\code{"none"}}{(default) Treat missing values as observations of a single

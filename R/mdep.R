@@ -11,7 +11,13 @@
 #' `gdis` requires a matrix or data frame.
 #' @param y `NULL` (default) or a vector, matrix or data frame with compatible dimensions to `x`.
 #' @param data `NULL` (default) or a data frame. Required if `x` is a formula.
-#' @param dropNA a character specifying how to handle missing values.
+#' @param type a character string specifying a type of correlation measure to be computed.
+#' It should be one of the following:
+#' \describe{
+#'   \item{`"chisq"`}{(default) Contingency correlation with chi-squared divergence}
+#'   \item{`"KL"`}{Contingency correlation with KL divergence}
+#' }
+#' @param dropNA a character string specifying how to handle missing values.
 #' It should be one of the following:
 #' \describe{
 #'   \item{`"none"`}{(default) Treat missing values as observations of a single
@@ -65,13 +71,14 @@
 #' @importFrom stats as.dist complete.cases model.frame model.response setNames
 NULL
 
-# @param measure a character specifying the type of measure, one of `"cor"`, `"dist"`, `"dgcor"`.
+# @param measure a character string specifying the type of measure, one of `"cor"`, `"dist"`, `"dgcor"`.
 # `gcor` is a wrapper for `mdep` with `measure = "cor"`.
 # Similarly, `gdis` wraps `measure = "dist"`, and `dgcor` wraps `measure = "dgcor"`.
-# @param xname a character to be used as the name of `x`, when x is an atomic vector.
-# @param yname a character used as the name of `y` (same as `xname` for `x`).
+# @param xname a character string to be used as the name of `x`, when x is an atomic vector.
+# @param yname a character string used as the name of `y` (same as `xname` for `x`).
 mdep <- function(x, y = NULL, data = NULL,
-                 dropNA = "none", k = NULL, max_levels, simplify = FALSE,
+                 type = "chisq", dropNA = "none",
+                 k = NULL, max_levels, simplify = FALSE,
                  measure,
                  xname = deparse1(substitute(x)), yname = deparse1(substitute(y)),
                  ...
@@ -218,30 +225,33 @@ mdep <- function(x, y = NULL, data = NULL,
 
 #' @rdname gcor-package
 #' @export
-gcor <- function(x, y = NULL, data = NULL, dropNA = "none",
+gcor <- function(x, y = NULL, data = NULL,
+                 type = "chisq", dropNA = "none",
                  k = NULL, max_levels = 100, simplify = TRUE) {
-  mdep(x = x, y = y, k = k, data = data, max_levels = max_levels,
+  mdep(x = x, y = y, k = k, data = data, type = type, max_levels = max_levels,
        simplify = simplify, dropNA = dropNA, measure = "cor",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
 #' @rdname gcor-package
 #' @export
-dgcor <- function(x, y = NULL, data = NULL, dropNA = "none",
+dgcor <- function(x, y = NULL, data = NULL,
+                  type = "chisq", dropNA = "none",
                   k = NULL, max_levels = 100, simplify = TRUE) {
-  mdep(x = x, y = y, k = k, data = data, max_levels = max_levels,
+  mdep(x = x, y = y, k = k, data = data, type = type, max_levels = max_levels,
        simplify = simplify, dropNA = dropNA, measure = "dgcor",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)))
 }
 
 #' @rdname gcor-package
 #' @export
-gdis <- function(x, dropNA = "none", k = NULL, max_levels = 100, ...) {
+gdis <- function(x, type = "chisq", dropNA = "none", 
+                 k = NULL, max_levels = 100, ...) {
   if(!is.matrix(x) && !is.data.frame(x)) {
     stop("x should be a matrix or data frame.")
   }
 
-  mdep(x = x, y = NULL, k = k, max_levels = max_levels,
+  mdep(x = x, y = NULL, type = type, k = k, max_levels = max_levels,
        dropNA = dropNA, measure = "dist",
        xname = deparse1(substitute(x)), yname = deparse1(substitute(y)), ...)
 }
