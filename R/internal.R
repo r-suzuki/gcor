@@ -59,12 +59,13 @@
 
   if(n > 0) {
     if(!is.factor(x) || !is.factor(y)) {
+      kx <- length(unique(x))
+      ky <- length(unique(y))
+      
       if(type == "chisq") {
         # .div returns non-factor vector is length(unique(.)) > max_levels.
         # In such a case we return NA unless x and y are identical,
         # with length(unique(.)) as k where NAs are counted as one level.
-        kx <- length(unique(x))
-        ky <- length(unique(y))
         phi <- if(identical(x, y)) kx else NA_real_
       } else if(type == "KL") {
         # TODO: Consider using NaN when useNA is TRUE.
@@ -80,10 +81,11 @@
       nx  <- apply(nn, 1, sum)
       ny  <- apply(nn, 2, sum)
 
+      kx <- length(nx)
+      ky <- length(ny)
+
       if(type == "chisq") {
         phi <- sum(nn^2 / outer(nx, ny))
-        kx <- length(nx)
-        ky <- length(ny)
       } else if(type == "KL") {
         pp <- nn / n
         pq <- nn / outer(nx, ny) * n
@@ -93,12 +95,13 @@
         Hx <- .entropy(nx)
         Hy <- .entropy(ny)
       }
+    }
   }
   
-  if(type == "chisq")
+  if(type == "chisq") {
     ret <- list(phi = phi, kx = kx, ky = ky)
   } else if(type == "KL") {
-    ret <- list(Ixy = Ixy, Hx = Hx, Hy = Hy)
+    ret <- list(Ixy = Ixy, Hx = Hx, Hy = Hy, kx = kx, ky = ky)
   }
 
   return(ret)

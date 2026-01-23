@@ -178,16 +178,15 @@ mdep <- function(x, y = NULL, data = NULL,
       } else if(IS_XY_SYNMETRIC && i == j) {
         ret[i, j] <- if(measure == "dist") 0.0 else 1.0
       } else {
-        m_ij <- .quantile_grid_aprox(xx[,i], yy[,j], k, type = "chisq",
+        m_ij <- .quantile_grid_aprox(xx[,i], yy[,j], k, type = type,
                                     useNA = (dropNA != "pairwise"))
+        kx <- m_ij$kx
+        ky <- m_ij$ky
+        kk <- sqrt(kx * ky)
         
         if(type == "chisq") {
           phi_ij <- m_ij$phi
           r2 <- 1 - 1/phi_ij
-
-          kx <- m_ij$kx
-          ky <- m_ij$ky
-          kk <- sqrt(kx * ky)
 
           # If kk == 1, both x and y is constant.
           # In this case gcor(x,y) = 1 and gdis(x,y) = 0.
