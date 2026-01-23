@@ -29,36 +29,77 @@
   return(ret)
 }
 
+# compute entropy from x = table(.)
+.entropy <- function(x) {
+  stopifnot(all(x >= 0))
+
+  y <- x[x > 0]
+
+  if(length(y) == 0) {
+    return(NA_real_)
+  }
+  
+  p <- y / sum(y)
+  ent <- sum(-p * log(p))
+
+  return(ent)
+}
+
 # returns a list containing the estimated values, and other quantities
 # for further computations.
 #' @importFrom stats xtabs
-.mdep_quantile_grid <- function(x, y, k, max_levels, useNA = TRUE) {
+.quantile_grid_aprox <- function(x, y, k, type, max_levels, useNA = TRUE) {
   stopifnot(length(x) == length(y))
   n <- length(x)
 
-  if(n == 0) {
-    phi <- NA_real_
-    kx <- ky <- 0L
-  } else if(!is.factor(x) || !is.factor(y)) {
-    # .div returns non-factor vector is length(unique(.)) > max_levels.
-    # In such a case we return NA unless x and y are identical,
-    # with length(unique(.)) as k where NAs are counted as one level.
-    kx <- length(unique(x))
-    ky <- length(unique(y))
+  # Initial values used when n == 0
+  phi <- NA_real_
+  kx <- ky <- 0L
+  Ixy <- Hx <- Hy <- NA_real_
 
-    phi <- if(identical(x, y)) kx else NA_real_
-  } else {
-    # drop.unused.levels = TRUE is required to avoid marginal probability 0
-    nn <- xtabs(~ x + y, addNA = useNA, drop.unused.levels = TRUE)
-    nx  <- apply(nn, 1, sum)
-    ny  <- apply(nn, 2, sum)
+  if(n > 0) {
+    if(!is.factor(x) || !is.factor(y)) {
+      if(type == "chisq") {
+        # .div returns non-factor vector is length(unique(.)) > max_levels.
+        # In such a case we return NA unless x and y are identical,
+        # with length(unique(.)) as k where NAs are counted as one level.
+        kx <- length(unique(x))
+        ky <- length(unique(y))
+        phi <- if(identical(x, y)) kx else NA_real_
+      } else if(type == "KL") {
+        # TODO: Consider using NaN when useNA is TRUE.
+        #       See "exclude" argument of ?table
+        useNA_ent <- if(useNA) "ifany" else "no"
+        Hx <- .entropy(table(x, useNA = useNA_ent))
+        Hy <- .entropy(table(y, useNA = useNA_ent))
+        Ixy <- if(identical(x, y)) Hx else NA_real_
+      }
+    } else {
+      # drop.unused.levels = TRUE is required to avoid marginal probability 0
+      nn <- xtabs(~ x + y, addNA = useNA, drop.unused.levels = TRUE)
+      nx  <- apply(nn, 1, sum)
+      ny  <- apply(nn, 2, sum)
 
-    phi <- sum(nn^2 / outer(nx, ny))
-    kx <- length(nx)
-    ky <- length(ny)
+      if(type == "chisq") {
+        phi <- sum(nn^2 / outer(nx, ny))
+        kx <- length(nx)
+        ky <- length(ny)
+      } else if(type == "KL") {
+        pp <- nn / n
+        pq <- nn / outer(nx, ny) * n
+
+        # - 0 * log(0) = NaN and removed with na.rm = TRUE
+        Ixy <- sum(pp * log(pq), na.rm = TRUE)
+        Hx <- .entropy(nx)
+        Hy <- .entropy(ny)
+      }
   }
-
-  ret <- list(estimate = phi, kx = kx, ky = ky)
+  
+  if(type == "chisq")
+    ret <- list(phi = phi, kx = kx, ky = ky)
+  } else if(type == "KL") {
+    ret <- list(Ixy = Ixy, Hx = Hx, Hy = Hy)
+  }
 
   return(ret)
 }

@@ -84,6 +84,7 @@ mdep <- function(x, y = NULL, data = NULL,
                  ...
                  ) {
   IS_XY_SYNMETRIC <- FALSE
+  TYPES <- c("chisq", "KL")
   MEASURES <- c("cor", "dist", "dgcor")
   DROP_NA <- c("none", "casewise", "pairwise")
   xx <- yy <- kk <- ret <- NULL
@@ -94,6 +95,10 @@ mdep <- function(x, y = NULL, data = NULL,
 
   if(is.null(y) & is.atomic(x) && is.null(dim(x))) {
     stop("Supply non-NULL y if x is a non-matrix atomic vector.")
+  }
+  
+  if(is.na(match(type, TYPES))) {
+    stop(.gen_msg("type", type, TYPES))
   }
 
   if(is.na(match(dropNA, DROP_NA))) {
@@ -173,36 +178,58 @@ mdep <- function(x, y = NULL, data = NULL,
       } else if(IS_XY_SYNMETRIC && i == j) {
         ret[i, j] <- if(measure == "dist") 0.0 else 1.0
       } else {
-        m_ij <- .mdep_quantile_grid(xx[,i], yy[,j], k,
+        m_ij <- .quantile_grid_aprox(xx[,i], yy[,j], k, type = "chisq",
                                     useNA = (dropNA != "pairwise"))
-        phi_ij <- m_ij$estimate
+        
+        if(type == "chisq") {
+          phi_ij <- m_ij$phi
+          r2 <- 1 - 1/phi_ij
 
-        # phi_ij should be greater or equal to 1, but estimated values
-        # with some approximation could be less than 1. It is adjusted here.
-        if(!is.na(phi_ij) && phi_ij < 1) {
-          warning("Estimated mutual dependency < 1; adjusted to 1.", .call = FALSE)
-          phi_ij <- 1
+          kx <- m_ij$kx
+          ky <- m_ij$ky
+          kk <- sqrt(kx * ky)
+
+          # If kk == 1, both x and y is constant.
+          # In this case gcor(x,y) = 1 and gdis(x,y) = 0.
+          if(measure == "cor") {
+            ret[i, j] <- if(kk == 1) 1 else sqrt(r2 / (1 - 1/kk))
+            if(IS_XY_SYNMETRIC) ret[j, i]  <- ret[i, j]
+          } else if(measure == "dist") {
+            ret[i, j] <- if(kk == 1) 0 else sqrt(1 - r2 / (1 - 1/kk))
+            if(IS_XY_SYNMETRIC) ret[j, i] <- ret[i, j]
+          } else if(measure == "dgcor") {
+            # If ky == 1, y is constant and completely dependent on any random variable.
+            # So dgcor(x,y) = 1.
+            ret[i, j] <- if(ky == 1) 1 else sqrt(r2 / (1 - 1/ky))
+            if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 1) 1 else sqrt(r2 / (1 - 1/kx))
+          }
         }
 
-        r2 <- 1 - 1/phi_ij
+        if(type == "KL") {
+          Ixy_ij <- m_ij$Ixy
+          r2 <- 1 - exp(-2 * Ixy_ij)
 
-        kx <- m_ij$kx
-        ky <- m_ij$ky
-        kk <- sqrt(kx) * sqrt(ky)
+          Hx <- m_ij$Hx
+          Hy <- m_ij$Hy
 
-        # If kk == 1, both x and y is constant.
-        # In this case gcor(x,y) = 1 and gdis(x,y) = 0.
-        if(measure == "cor") {
-          ret[i, j] <- if(kk == 1) 1 else sqrt(r2 / (1 - 1/kk))
-          if(IS_XY_SYNMETRIC) ret[j, i]  <- ret[i, j]
-        } else if(measure == "dist") {
-          ret[i, j] <- if(kk == 1) 0 else sqrt(1 - r2 / (1 - 1/kk))
-          if(IS_XY_SYNMETRIC) ret[j, i] <- ret[i, j]
-        } else if(measure == "dgcor") {
-          # If ky == 1, y is constant and completely dependent on any random variable.
-          # So dgcor(x,y) = 1.
-          ret[i, j] <- if(ky == 1) 1 else sqrt(r2 / (1 - 1/ky))
-          if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 1) 1 else sqrt(r2 / (1 - 1/kx))
+          r2x <- 1 - exp(-2 * Hx)
+          r2y <- 1 - exp(-2 * Hy)
+          r2xy <- sqrt(r2x * r2y)
+
+          # If kk == 1, both x and y is constant.
+          # In this case gcor(x,y) = 1 and gdis(x,y) = 0.
+          if(measure == "cor") {
+            ret[i, j] <- if(kk == 1) 1 else sqrt(r2 / r2xy)
+            if(IS_XY_SYNMETRIC) ret[j, i]  <- ret[i, j]
+          } else if(measure == "dist") {
+            ret[i, j] <- if(kk == 1) 0 else sqrt(1 - r2 / r2xy)
+            if(IS_XY_SYNMETRIC) ret[j, i] <- ret[i, j]
+          } else if(measure == "dgcor") {
+            # If ky == 1, y is constant and completely dependent on any random variable.
+            # So dgcor(x,y) = 1.
+            ret[i, j] <- if(ky == 1) 1 else sqrt(r2 / r2y)
+            if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 1) 1 else sqrt(r2 / r2x)
+          }
         }
       }
     }
@@ -220,6 +247,7 @@ mdep <- function(x, y = NULL, data = NULL,
     }
   }
 
+  # TODO: add type as a attribute
   return(ret)
 }
 
