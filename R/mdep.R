@@ -177,19 +177,21 @@ mdep <- function(x, y = NULL, data = NULL,
           phi_ij <- 1
         }
 
-        r2 <- 1 - 1/phi_ij
-
         kx <- m_ij$kx
         ky <- m_ij$ky
-        kk <- sqrt(kx) * sqrt(ky)
 
-        # If kk == 1, both x and y is constant.
-        # In this case gcor(x,y) = 1 and gdis(x,y) = 0.
+        r2 <- 1 - 1/phi_ij
+        r2_std <- r2 / sqrt(1 - 1/kx) / sqrt(1 - 1/ky)
+
+        is_constant <- kx == 1 && ky == 1
+
+        # If both x and y are constant,
+        # gcor(x,y) = 1 and gdis(x,y) = 0.
         if(measure == "cor") {
-          ret[i, j] <- if(kk == 1) 1 else sqrt(r2 / (1 - 1/kk))
+          ret[i, j] <- if(is_constant) 1 else sqrt(r2_std)
           if(IS_XY_SYNMETRIC) ret[j, i]  <- ret[i, j]
         } else if(measure == "dist") {
-          ret[i, j] <- if(kk == 1) 0 else sqrt(1 - r2 / (1 - 1/kk))
+          ret[i, j] <- if(is_constant) 0 else sqrt(1 - r2_std)
           if(IS_XY_SYNMETRIC) ret[j, i] <- ret[i, j]
         } else if(measure == "dgcor") {
           # If ky == 1, y is constant and completely dependent on any random variable.
