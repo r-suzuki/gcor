@@ -2,12 +2,13 @@
 # TODO: Consider treating NA and NaN differently.
 #       It may not be natural in R since is.na(NaN) is TRUE
 #       and NaNs are omitted by na.omit()
-# TODO: Discretize difftime. Fixes will be needed in some documents
-# TODO: Add tests for Date/POSIXt
+# TODO: Add tests for Date/POSIXt, difftime
 #' @importFrom stats quantile na.omit
 #' @importFrom utils head tail
 .div <- function(x, k, max_levels) {
   is_date_dt <- inherits(x, c("Date", "POSIXt"))
+
+  if(inherits(x, "difftime")) x <- as.double(x)
   
   if(is.numeric(x) || is_date_dt) {
     # default selection of k (10-by-2 rule)
