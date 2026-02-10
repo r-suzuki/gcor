@@ -2,13 +2,14 @@
 # TODO: Consider treating NA and NaN differently.
 #       It may not be natural in R since is.na(NaN) is TRUE
 #       and NaNs are omitted by na.omit()
-# TODO: Discretize date/datetime (Date/POSIXct/POSIXlt/difftime).
-#       Fixes will be needed in some documents
-#' @importFrom stats quantile
-#' @importFrom stats na.omit
+# TODO: Discretize difftime. Fixes will be needed in some documents
+# TODO: Add tests for Date/POSIXt
+#' @importFrom stats quantile na.omit
+#' @importFrom utils head tail
 .div <- function(x, k, max_levels) {
-
-  if(is.numeric(x)) {
+  is_date_dt <- inherits(x, c("Date", "POSIXt"))
+  
+  if(is.numeric(x) || is_date_dt) {
     # default selection of k (10-by-2 rule)
     if(is.null(k)) {
       k <- pmax(2, floor(length(na.omit(x))^log10(2)/2))
@@ -18,7 +19,22 @@
       # Set type = 1 to use the empirical distribution function
       qt <- quantile(x, probs = seq(0, 1, length.out = k + 1),
                      na.rm = TRUE, type = 1)
-      ret <- cut(x, breaks = unique(qt), include.lowest = TRUE)
+      bk <- unique(qt)
+      # Set custom labels for Date/POSIXt
+      lab <- if(is_date_dt) {
+        paste0(
+              c("[", rep("(", length(bk) - 2)),
+              head(bk, -1),
+              ",",
+              tail(bk, -1),
+              "]")
+      } else {
+        NULL
+      }
+      
+      ret <- cut(x, breaks = bk,
+                 labels = lab, include.lowest = TRUE,
+                 right = TRUE) # required for Date/POSIXt
     } else {
       ret <- as.factor(x)
     }
