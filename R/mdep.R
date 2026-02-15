@@ -182,7 +182,9 @@ mdep <- function(x, y = NULL, data = NULL,
 
         r2 <- 1 - 1/phi_ij
 
-        r2_std <- if(kx == 1 && ky == 1) {
+        r2_std <- if(kx == 0 || ky == 0) {
+          NA_real_
+        } else if(kx == 1 && ky == 1) {
           1
         } else if(kx == 1 || ky == 1) {
           0
@@ -201,8 +203,8 @@ mdep <- function(x, y = NULL, data = NULL,
         } else if(measure == "dgcor") {
           # If ky == 1, y is constant and completely dependent on any random variable.
           # So dgcor(x,y) = 1.
-          ret[i, j] <- if(ky == 1) 1 else sqrt(r2 / (1 - 1/ky))
-          if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 1) 1 else sqrt(r2 / (1 - 1/kx))
+          ret[i, j] <- if(ky == 0) NA_real_ else if(ky == 1) 1 else sqrt(r2 / (1 - 1/ky))
+          if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 0) NA_real_ else if(kx == 1) 1 else sqrt(r2 / (1 - 1/kx))
         }
       }
     }
