@@ -177,25 +177,34 @@ mdep <- function(x, y = NULL, data = NULL,
           phi_ij <- 1
         }
 
-        r2 <- 1 - 1/phi_ij
-
         kx <- m_ij$kx
         ky <- m_ij$ky
-        kk <- sqrt(kx) * sqrt(ky)
 
-        # If kk == 1, both x and y is constant.
-        # In this case gcor(x,y) = 1 and gdis(x,y) = 0.
+        r2 <- 1 - 1/phi_ij
+
+        r2_std <- if(kx == 0 || ky == 0) {
+          NA_real_
+        } else if(kx == 1 && ky == 1) {
+          1
+        } else if(kx == 1 || ky == 1) {
+          0
+        } else {
+          r2 / sqrt(1 - 1/kx) / sqrt(1 - 1/ky)
+        }
+
+        # If both x and y are constant, gcor(x, y) = 1.
+        # If only one of x and y is constant, gcor(x, y) = 0.
         if(measure == "cor") {
-          ret[i, j] <- if(kk == 1) 1 else sqrt(r2 / (1 - 1/kk))
+          ret[i, j] <- sqrt(r2_std)
           if(IS_XY_SYNMETRIC) ret[j, i]  <- ret[i, j]
         } else if(measure == "dist") {
-          ret[i, j] <- if(kk == 1) 0 else sqrt(1 - r2 / (1 - 1/kk))
+          ret[i, j] <- sqrt(1 - r2_std)
           if(IS_XY_SYNMETRIC) ret[j, i] <- ret[i, j]
         } else if(measure == "dgcor") {
           # If ky == 1, y is constant and completely dependent on any random variable.
           # So dgcor(x,y) = 1.
-          ret[i, j] <- if(ky == 1) 1 else sqrt(r2 / (1 - 1/ky))
-          if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 1) 1 else sqrt(r2 / (1 - 1/kx))
+          ret[i, j] <- if(ky == 0) NA_real_ else if(ky == 1) 1 else sqrt(r2 / (1 - 1/ky))
+          if(IS_XY_SYNMETRIC) ret[j, i] <- if(kx == 0) NA_real_ else if(kx == 1) 1 else sqrt(r2 / (1 - 1/kx))
         }
       }
     }
