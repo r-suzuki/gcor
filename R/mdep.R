@@ -38,8 +38,8 @@
 #' For `gdis`, an object of class `"dist"` is returned.
 #'
 #' @references
-#' Suzuki, R. (2025). *A generalization of correlation coefficient*. preprint.
-#' \url{https://r-suzuki.github.io}
+#' Suzuki, R. (2025). *Method Overview of gcor*.
+#' \url{https://r-suzuki.github.io/gcor/method.html}
 #'
 #' @examples
 #' # Generalized correlation measure
