@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='504.00pt' height='360.00pt' viewBox='0 0 504.00 360.00'>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='504.00pt' height='360.00pt' viewBox='0 0 504.00 360.00'>
+<g class='svglite'>
 <defs>
   <style type='text/css'><![CDATA[
     .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
@@ -12,6 +13,10 @@
     .svglite text {
       white-space: pre;
     }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
   ]]></style>
 </defs>
 <rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
@@ -21,29 +26,30 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
-<text transform='translate(76.98,90.10) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='64.70px' lengthAdjust='spacingAndGlyphs'>Sepal.Width</text>
-<text transform='translate(172.98,162.00) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='42.69px' lengthAdjust='spacingAndGlyphs'>Species</text>
-<text transform='translate(268.98,182.51) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='70.73px' lengthAdjust='spacingAndGlyphs'>Sepal.Length</text>
-<text transform='translate(364.98,216.47) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='67.39px' lengthAdjust='spacingAndGlyphs'>Petal.Length</text>
-<text transform='translate(460.98,216.47) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='61.36px' lengthAdjust='spacingAndGlyphs'>Petal.Width</text>
-<polyline points='362.40,206.48 362.40,193.84 458.40,193.84 458.40,206.48 ' style='stroke-width: 0.75;' />
-<polyline points='266.40,172.52 266.40,159.88 410.40,159.88 410.40,193.84 ' style='stroke-width: 0.75;' />
-<polyline points='170.40,152.01 170.40,139.37 338.40,139.37 338.40,159.88 ' style='stroke-width: 0.75;' />
-<polyline points='74.40,80.10 74.40,67.47 254.40,67.47 254.40,139.37 ' style='stroke-width: 0.75;' />
-<line x1='59.04' y1='211.99' x2='59.04' y2='59.04' style='stroke-width: 0.75;' />
-<line x1='59.04' y1='211.99' x2='51.84' y2='211.99' style='stroke-width: 0.75;' />
-<line x1='59.04' y1='179.37' x2='51.84' y2='179.37' style='stroke-width: 0.75;' />
-<line x1='59.04' y1='146.75' x2='51.84' y2='146.75' style='stroke-width: 0.75;' />
-<line x1='59.04' y1='114.12' x2='51.84' y2='114.12' style='stroke-width: 0.75;' />
-<line x1='59.04' y1='81.50' x2='51.84' y2='81.50' style='stroke-width: 0.75;' />
-<text transform='translate(41.76,211.99) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.2</text>
-<text transform='translate(41.76,179.37) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.4</text>
-<text transform='translate(41.76,146.75) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.6</text>
-<text transform='translate(41.76,114.12) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.8</text>
-<text transform='translate(41.76,81.50) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>1.0</text>
-<text x='266.40' y='34.70' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: "Arial";' textLength='139.16px' lengthAdjust='spacingAndGlyphs'>Cluster Dendrogram</text>
+<text transform='translate(76.98,90.11) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='64.69px' lengthAdjust='spacingAndGlyphs'>Sepal.Width</text>
+<text transform='translate(172.98,162.02) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='42.69px' lengthAdjust='spacingAndGlyphs'>Species</text>
+<text transform='translate(268.98,182.54) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='70.70px' lengthAdjust='spacingAndGlyphs'>Sepal.Length</text>
+<text transform='translate(364.98,216.50) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='67.36px' lengthAdjust='spacingAndGlyphs'>Petal.Length</text>
+<text transform='translate(460.98,216.50) rotate(-90)' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='61.34px' lengthAdjust='spacingAndGlyphs'>Petal.Width</text>
+<polyline points='362.40,206.50 362.40,193.86 458.40,193.86 458.40,206.50 ' style='stroke-width: 0.75;' />
+<polyline points='266.40,172.54 266.40,159.90 410.40,159.90 410.40,193.86 ' style='stroke-width: 0.75;' />
+<polyline points='170.40,152.02 170.40,139.38 338.40,139.38 338.40,159.90 ' style='stroke-width: 0.75;' />
+<polyline points='74.40,80.11 74.40,67.47 254.40,67.47 254.40,139.38 ' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='212.01' x2='59.04' y2='59.04' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='212.01' x2='51.84' y2='212.01' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='179.39' x2='51.84' y2='179.39' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='146.76' x2='51.84' y2='146.76' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='114.13' x2='51.84' y2='114.13' style='stroke-width: 0.75;' />
+<line x1='59.04' y1='81.51' x2='51.84' y2='81.51' style='stroke-width: 0.75;' />
+<text transform='translate(41.76,212.01) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>0.2</text>
+<text transform='translate(41.76,179.39) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>0.4</text>
+<text transform='translate(41.76,146.76) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>0.6</text>
+<text transform='translate(41.76,114.13) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>0.8</text>
+<text transform='translate(41.76,81.51) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='16.67px' lengthAdjust='spacingAndGlyphs'>1.0</text>
+<text x='266.40' y='34.67' text-anchor='middle' style='font-size: 14.40px; font-weight: bold; font-family: "Arial";' textLength='139.14px' lengthAdjust='spacingAndGlyphs'>Cluster Dendrogram</text>
 <text x='266.40' y='355.68' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='107.22px' lengthAdjust='spacingAndGlyphs'>hclust (*, "ward.D2")</text>
-<text x='266.40' y='341.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>gd</text>
+<text x='266.40' y='341.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='13.34px' lengthAdjust='spacingAndGlyphs'>gd</text>
 <text transform='translate(12.96,172.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='34.69px' lengthAdjust='spacingAndGlyphs'>Height</text>
+</g>
 </g>
 </svg>
