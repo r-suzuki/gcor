@@ -1,6 +1,6 @@
 #' Estimate generalized correlation and related measures
 #'
-#' @description Estimate measures based on mutual dependency, which includes:
+#' @description Estimate generalized correlation and related measures, which includes:
 #' \itemize{
 #'   \item{Generalized correlation measure (`gcor`)}
 #'   \item{Directed generalized correlation measure (`dgcor`)}

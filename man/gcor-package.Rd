@@ -69,7 +69,7 @@ For \code{gcor} and \code{dgcor}, a numeric matrix is returned (or a vector if \
 For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{
-Estimate measures based on mutual dependency, which includes:
+Estimate generalized correlation and related measures, which includes:
 \itemize{
 \item{Generalized correlation measure (\code{gcor})}
 \item{Directed generalized correlation measure (\code{dgcor})}
