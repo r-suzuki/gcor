@@ -96,6 +96,6 @@ plot(mds, type = "n", xlab = "", ylab = "", asp = 1, axes = FALSE,
 text(mds[,1], mds[,2], rownames(mds))
 }
 \references{
-Suzuki, R. (2025). \emph{Method Overview of gcor}.
+Suzuki, R. (2026). \emph{Method Overview of gcor}.
 \url{https://r-suzuki.github.io/gcor/method.html}
 }
