@@ -69,7 +69,7 @@ dgc <- dgcor(Species ~ ., data = iris)
 dotchart(sort(dgc), main = "Dependency of Species")
 ```
 
-<img src="man/figures/README-example_iris_dgcor-1.svg" width="100%" />
+<img src="man/figures/README-example_iris_dgcor-1.svg" alt="" width="100%" />
 
 With $r_g$ as the generalized correlation between $X$ and $Y$, we can
 define a dissimilarity measure:
@@ -87,7 +87,7 @@ hc <- hclust(gd, method = "ward.D2")
 plot(hc)
 ```
 
-<img src="man/figures/README-example_iris_hclust-1.svg" width="100%" />
+<img src="man/figures/README-example_iris_hclust-1.svg" alt="" width="100%" />
 
 Multidimensional scaling would serve as a good example of an
 application:
@@ -100,4 +100,4 @@ plot(mds, type = "n", xlab = "", ylab = "", asp = 1, axes = FALSE,
 text(mds[,1], mds[,2], rownames(mds))
 ```
 
-<img src="man/figures/README-example_iris_cmdscale-1.svg" width="100%" />
+<img src="man/figures/README-example_iris_cmdscale-1.svg" alt="" width="100%" />
