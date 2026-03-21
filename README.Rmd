@@ -23,23 +23,35 @@ pkgload::load_all(".")
 
 It features a generalized version of (absolute) correlation coefficient for arbitrary types of data, including both numerical and categorical variables. Missing values can also be handled naturally by treating them as observations of a categorical value `NA`.
 
-**Note that this project is in an early stage of development, so changes may occur frequently.**
 
 ## Installation
 
-You can install the development version of `gcor` from [GitHub](https://github.com/) with `pak`:
+### CRAN
+
+``` r
+install.packages("gcor")
+```
+
+### GitHub (development version)
 
 ``` r
 # install.packages("pak")
 pak::pak("r-suzuki/gcor-r")
 ```
 
-or with `devtools`:
+or
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("r-suzuki/gcor-r")
 ```
+
+## Documentation
+
+### Method Overview
+- [English](https://r-suzuki.github.io/gcor/method.html)
+- [Japanese](https://r-suzuki.github.io/gcor/method_ja.html)
+
 
 ## Example
 
