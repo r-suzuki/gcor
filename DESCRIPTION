@@ -1,6 +1,6 @@
 Package: gcor
 Title: Generalized Correlation and Related Measures
-Version: 0.1.0
+Version: 0.1.0.9000
 Depends: R (>= 4.0.0)
 Authors@R: 
     person("Ryota", "Suzuki", , "suzuki@ef-prime.com", role = c("aut", "cre"))
