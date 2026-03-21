@@ -1,6 +1,6 @@
 #' Estimate generalized correlation and related measures
 #'
-#' @description Estimate measures based on mutual dependency, which includes:
+#' @description Estimate generalized correlation and related measures, which includes:
 #' \itemize{
 #'   \item{Generalized correlation measure (`gcor`)}
 #'   \item{Directed generalized correlation measure (`dgcor`)}
@@ -38,7 +38,7 @@
 #' For `gdis`, an object of class `"dist"` is returned.
 #'
 #' @references
-#' Suzuki, R. (2025). *Method Overview of gcor*.
+#' Suzuki, R. (2026). *Method Overview of gcor*.
 #' \url{https://r-suzuki.github.io/gcor/method.html}
 #'
 #' @examples

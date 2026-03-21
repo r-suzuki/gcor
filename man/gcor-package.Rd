@@ -69,7 +69,7 @@ For \code{gcor} and \code{dgcor}, a numeric matrix is returned (or a vector if \
 For \code{gdis}, an object of class \code{"dist"} is returned.
 }
 \description{
-Estimate measures based on mutual dependency, which includes:
+Estimate generalized correlation and related measures, which includes:
 \itemize{
 \item{Generalized correlation measure (\code{gcor})}
 \item{Directed generalized correlation measure (\code{dgcor})}
@@ -96,6 +96,6 @@ plot(mds, type = "n", xlab = "", ylab = "", asp = 1, axes = FALSE,
 text(mds[,1], mds[,2], rownames(mds))
 }
 \references{
-Suzuki, R. (2025). \emph{Method Overview of gcor}.
+Suzuki, R. (2026). \emph{Method Overview of gcor}.
 \url{https://r-suzuki.github.io/gcor/method.html}
 }

@@ -1,15 +1,15 @@
 Package: gcor
 Title: Generalized Correlation and Related Measures
-Version: 0.0.0.9000
+Version: 0.1.0
 Depends: R (>= 4.0.0)
 Authors@R: 
     person("Ryota", "Suzuki", , "suzuki@ef-prime.com", role = c("aut", "cre"))
-Description: Measures based on mutual dependency and other related methods
-    for data analysis. Note tha it is in an early stage of development,
-    so changes may occur frequently.
+Description: Generalized correlation and related measures for assessing
+    nonlinear relationships between variables, including mixed-type data.
+    For methodological background, see <https://r-suzuki.github.io/gcor/method.html>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 URL: https://github.com/r-suzuki/gcor-r
 BugReports: https://github.com/r-suzuki/gcor-r/issues
