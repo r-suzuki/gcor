@@ -53,7 +53,7 @@ devtools::install_github("r-suzuki/gcor-r")
 - [Japanese](https://r-suzuki.github.io/gcor/method_ja.html)
 
 
-## Example
+## Examples
 
 ```{r example}
 library(gcor)
